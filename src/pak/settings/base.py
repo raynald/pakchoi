@@ -74,10 +74,9 @@ INSTALLED_APPS = (
     'authtools',
     'crispy_forms',
     'easy_thumbnails',
-
     'profiles',
     'accounts',
-
+    'education',
 )
 
 MIDDLEWARE_CLASSES = (

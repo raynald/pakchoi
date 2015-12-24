@@ -9,3 +9,4 @@ class FAQPage(generic.TemplateView):
 
 class AboutPage(generic.TemplateView):
     template_name = "about.html"
+

@@ -1,3 +1,4 @@
 <li {% if active_link == "home" %}class="active"{% endif %}><a href="{% url 'home' %}">首页</a></li>
+<li {% if active_link == "search_teacher" %}class="active"{% endif %}><a href="{% url 'search_teacher' %}">搜索老师</a></li>
 <li {% if active_link == "faq" %}class="active"{% endif %}><a href="{% url 'faq' %}">常见问题</a></li>
 <li {% if active_link == "about" %}class="active"{% endif %}><a href="{% url 'about' %}">关于我们</a></li>

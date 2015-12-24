@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}搜索老师{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="search_teacher" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+    {% for teacher in object_list %}
+        <p><img src="/media/{{ teacher.picture }}" style="border: 0px currentcolor; border-image-source: none; width: 556px !important; display: inline-block; box-sizing: border-box; visibility: visible !important; height: auto !important;">
+        </p>
+        <h2>
+            {{ teacher.full_name }}
+        </h2>
+        <p>
+            <strong>{{ teacher.school }}</strong>
+        </p>
+        <p>
+            <strong>个人成就: {{teacher.achievement}}</strong>
+        </p>
+        <p>
+        教授科目:
+        <ul>
+        {% for sub in teacher.subjects.all %}
+            <li>{{ sub.title }}</li>
+        {% endfor %}
+        </ul>
+        </p>
+        <p>课程费用: {{teacher.price}}</p>
+        <p>所在地: {{ teacher.district }}, {{ teacher.district.city }}</p>
+        <p>个人说明: {{teacher.description}}</p>
+{% endfor %}
+{% endblock container %}
