@@ -6,26 +6,38 @@
 {% block title %}{{ block.super }}Home{% endblock %}
 
 {% block navbar-left %}
-  {% include "_navbar.html" with active_link="home" %}
+    {% include "_navbar.html" with active_link="home" %}
 {% endblock %}
 
 {% block navbar-right %}
-  {% if not user.is_authenticated %}
+     {% if not user.is_authenticated %}
 <a class="btn btn-default" href="{% url 'accounts:login' %}" role="button">登录</a>
 <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">注册</a>
-  {% else %}
-    {{ block.super }}
-  {% endif %}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
 {% endblock %}
 
 {% block splash %}
-  <div class="jumbotron jumbotron-carousel corporate-jumbo">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-sm-8">
-          <h1>{% include "_brandname.html" %}</h1>
-          <p>最专业的团队,最优秀的师资,最快捷的服务</p>
-	  <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">马上免费注册体验!</a>
+    <div class="jumbotron jumbotron-carousel corporate-jumbo">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-sm-8">
+                <h1>{% include "_brandname.html" %}</h1>
+                <p>最专业的团队,最优秀的师资,最快捷的服务</p>
+                <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">马上免费注册体验!</a>
+                <p/>
+                <p align="left">我是学生,找找有没有合适的老师:</p>
+                <form id="search_teacher_form" action="{% url 'search_teacher' %}" method="get" accept-charset="utf-8">
+                    <input type="text" class="form-control" name="q" id="search1" placeholder="输入你需要补习的科目（如: 初中数学, 物理）" style="width: 300px">
+                    <button class="btn-danger" type="submit">搜 索</button>
+                </form>
+                <p/>
+                <p>我是老师,想要寻找学生:</p>
+                <form>
+                    <input type="text" class="form-control" name="search_student" id="search2" placeholder="输入你擅长的科目（如: 初中数学, 物理）" style="width: 300px">
+                    <button class="btn-danger" type="submit">搜 索</button>
+                </form>
         </div>
         <div class="col-md-4 col-sm-4">
 
@@ -63,5 +75,6 @@
 
 {% block scripts %}
 <script src="{% static 'site/js/site.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 {% endblock scripts %}
 

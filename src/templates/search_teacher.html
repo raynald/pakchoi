@@ -11,28 +11,49 @@
 
 <!-- Benefits of the Django application -->
 {% block container %}
-    {% for teacher in object_list %}
-        <p><img src="/media/{{ teacher.picture }}" style="border: 0px currentcolor; border-image-source: none; width: 556px !important; display: inline-block; box-sizing: border-box; visibility: visible !important; height: auto !important;">
-        </p>
-        <h2>
-            {{ teacher.full_name }}
-        </h2>
-        <p>
-            <strong>{{ teacher.school }}</strong>
-        </p>
-        <p>
-            <strong>个人成就: {{teacher.achievement}}</strong>
-        </p>
-        <p>
-        教授科目:
-        <ul>
-        {% for sub in teacher.subjects.all %}
-            <li>{{ sub.title }}</li>
+{% if object_list|length == 0 %}
+    <h2>对不起!没有符合您要求的老师.</h2>
+{% else %}
+    <div class="list-title" style="padding-top: 70px">
+        <a>所在城市:</a>
+        <select class="selectpicker">
+            <option value="volvo">上海</option>
+            <option value="saab">北京</option>
+        </select>
+    </div>
+    <a>选择科目:</a>
+    <div id="subject_param" class="param-value-list">
+        {% for subject in subjects %}
+        <a href="?q={{subject.title}}"> {{ subject.title }} </a>
         {% endfor %}
-        </ul>
-        </p>
-        <p>课程费用: {{teacher.price}}</p>
-        <p>所在地: {{ teacher.district }}, {{ teacher.district.city }}</p>
-        <p>个人说明: {{teacher.description}}</p>
-{% endfor %}
+    </div>
+    <ul style="columns: 2;-webkit-columns: 2;-moz-columns: 2;">
+    {% for teacher in object_list %}
+        <li>
+            <div>
+            <p><img class="img-circle centered" src="/media/{{ teacher.picture }}"></p>
+            <h2>
+                {{ teacher.full_name }}
+            </h2>
+            <p>
+                <strong>{{ teacher.school }}</strong>
+            </p>
+            <p>
+                <strong>个人成就: {{teacher.achievement}}</strong>
+            </p>
+            <p>
+            教授科目:
+            {% for sub in teacher.subjects.all %}
+                <a>{{ sub.title }}</a>
+            {% endfor %}
+            </p>
+            <p>课程费用: {{teacher.price}}元/小时</p>
+            <p>所在地: {{ teacher.district }}, {{ teacher.district.city }}</p>
+                <p style="color:blue">个人说明: {{teacher.description}}</p>
+            </div>
+            <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">联系TA!</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endif %}
 {% endblock container %}
