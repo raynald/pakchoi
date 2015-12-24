@@ -9,6 +9,14 @@
   {% include "_navbar.html" with active_link="search_teacher" %}
 {% endblock %}
 
+{% block styles %}
+<style>
+    .star {
+        background-image: http://icon.zol-img.com.cn/products/v3/list/list20150210.png
+    }
+</style>
+{% endblock styles %}
+
 <!-- Benefits of the Django application -->
 {% block container %}
 {% if object_list|length == 0 %}
@@ -30,7 +38,7 @@
     <ul style="columns: 2;-webkit-columns: 2;-moz-columns: 2;">
     {% for teacher in object_list %}
         <li>
-            <div>
+            <div class="teacher-list">
             <p><img class="img-circle centered" src="/media/{{ teacher.picture }}"></p>
             <h2>
                 {{ teacher.full_name }}
@@ -50,8 +58,15 @@
             <p>课程费用: {{teacher.price}}元/小时</p>
             <p>所在地: {{ teacher.district }}, {{ teacher.district.city }}</p>
                 <p style="color:blue">个人说明: {{teacher.description}}</p>
-            </div>
+            <p>评分:
+                {% if teacher.rate_num > 0 %}
+                    {{teacher.rate}} (已有{{ teacher.rate_num }}人评价)
+                {% else %}
+                    暂无
+                {% endif %}
+            </p>
             <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">联系TA!</a>
+            </div>
         </li>
     {% endfor %}
     </ul>

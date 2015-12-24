@@ -39,6 +39,8 @@ class Teacher(models.Model):
     price = models.IntegerField(default=50)
     achievement = models.TextField(max_length=1000, null=True, blank=True)
     description = models.TextField(max_length=1000, null=True, blank=True)
+    rate = models.IntegerField(default=0)
+    rate_num = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.full_name
