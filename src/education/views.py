@@ -22,3 +22,17 @@ class SearchTeacherPage(generic.ListView):
         context = super(SearchTeacherPage, self).get_context_data(**kwargs)
         context['subjects'] = Subject.objects.all()
         return context
+
+
+class TeacherDetailView(generic.detail.DetailView):
+    queryset = Teacher.objects.all()
+    model = Teacher
+    template_name = "teacher_detail.html"
+    query_pk_and_slug = True
+
+    def get_object(self, *args, **kwargs):
+        queryset = super(TeacherDetailView, self).get_queryset()
+        queryset = queryset.filter(id=self.kwargs['pk'])
+        return queryset.first()
+
+
