@@ -3,7 +3,7 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block title %}{{ block.super }}搜索老师{% endblock %}
+{% block title %}{{ block.super }}教师列表{% endblock %}
 
 {% block navbar-left %}
   {% include "_navbar.html" with active_link="search_teacher" %}
@@ -35,40 +35,29 @@
         <a href="?q={{subject.title}}"> {{ subject.title }} </a>
         {% endfor %}
     </div>
-    <ul style="columns: 2;-webkit-columns: 2;-moz-columns: 2;">
+    <div>
     {% for teacher in object_list %}
-        <li>
-            <div class="teacher-list">
-            <p><img class="img-circle centered" src="/media/{{ teacher.picture }}"></p>
-            <h2>
-                {{ teacher.full_name }}
-            </h2>
+        <div class="teacher-list">
+        <a href="{% url 'teacher-detail' teacher.id %}"><img class="img-square centered" width="142" height="142" align="left" src="/media/{{ teacher.picture }}"></a>
+        <div style="padding-left: 200px">
+            <h3>
+            {{ teacher.full_name }}
+            </h3>
+            <p>等级: {{ teacher.level }}</p>
             <p>
-                <strong>{{ teacher.school }}</strong>
-            </p>
-            <p>
-                <strong>个人成就: {{teacher.achievement}}</strong>
-            </p>
-            <p>
-            教授科目:
-            {% for sub in teacher.subjects.all %}
+                科目:
+                {% for sub in teacher.subjects.all %}
                 <a>{{ sub.title }}</a>
-            {% endfor %}
+                {% endfor %}
             </p>
-            <p>课程费用: {{teacher.price}}元/小时</p>
-            <p>所在地: {{ teacher.district }}, {{ teacher.district.city }}</p>
-                <p style="color:blue">个人说明: {{teacher.description}}</p>
-            <p>评分:
-                {% if teacher.rate_num > 0 %}
-                    {{teacher.rate}} (已有{{ teacher.rate_num }}人评价)
-                {% else %}
-                    暂无
-                {% endif %}
+            <p>
+                <strong>战绩: {{teacher.achievement}}</strong>
             </p>
-            <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">联系TA!</a>
-            </div>
-        </li>
+            <p style="color: red">课程费用: {{teacher.price}}元/小时</p>
+            <!--<a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">联系TA!</a>-->
+        </div>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 {% endif %}
 {% endblock container %}

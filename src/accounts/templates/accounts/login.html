@@ -4,14 +4,14 @@
 
 {% block title %}{{ block.super }}Log In{% endblock %}
 
-{% block form_heading %}Please Log In{% endblock %}
+{% block form_heading %}请登录{% endblock %}
 
 {% block form %}
   {% crispy form %}
 
   <div class="form-message">
     <p>
-      Don't have an account? <a href="{% url 'accounts:signup' %}">Sign up</a>.
+      还没有帐户? <a href="{% url 'accounts:signup' %}">注册</a>.
     </p>
   </div>
 {% endblock form %}

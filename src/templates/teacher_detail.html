@@ -3,10 +3,10 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block title %}{{ block.super }}老师详情{% endblock %}
+{% block title %}{{ block.super }}老师资料{% endblock %}
 
 {% block navbar-left %}
-  {% include "_navbar.html" with active_link="about" %}
+  {% include "_navbar.html" with active_link="search_teacher" %}
 {% endblock %}
 
 {% block styles %}
@@ -64,6 +64,77 @@
     <div class="col-lg-4">
       <h1>自我介绍</h1>
       <p>{{ object.description }}</p>
+    </div>
+    <div class="col-lg-4">
+    <table>
+      <tbody><tr>
+        <th></th>
+        <th>一</th>
+        <th>二</th>
+        <th>三</th>
+        <th>四</th>
+        <th>五</th>
+        <th>六</th>
+        <th>日</th>
+      </tr>
+      <tr id="morning">
+        <th>上午</th>
+        <td class="active">
+          <i class="fa fa-check-circle"></i>
+        </td>
+        <td class="active">
+          <i class="fa fa-check-circle"></i>
+        </td>
+        <td class="active">
+          <i class="fa fa-check-circle"></i>
+        </td>
+        <td class="active">
+          <i class="fa fa-check-circle"></i>
+        </td>
+        <td class="active">
+          <i class="fa fa-check-circle"></i>
+        </td>
+        <td>
+          <i class="fa fa-check-circle"></i>
+        </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                            </tr>
+      <tr id="afternoon">
+        <th>下午</th>
+        <td>
+          <i class="fa fa-check-circle"></i>
+        </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                            </tr>
+      <tr id="night">
+        <th>晚上</th>
+        <td>
+          <i class="fa fa-check-circle"></i>
+        </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                                        <td>
+        <i class="fa fa-check-circle"></i>
+      </td>                            </tr>
+
+      </tbody></table>
     </div>
     <div class="col-lg-4">
       <h1>家长点评</h1>
