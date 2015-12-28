@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block styles %}
-<style>
+<style type="text/css">
   span.stars, span.stars span {
   display: block;
   background: url(/media/stars.png) 0 -16px repeat-x;
@@ -24,7 +24,6 @@
 </style>
 {% endblock styles %}
 
-<!-- Benefits of the Django application -->
 {% block splash %}
 <div class="jumbotron jumbotron-carousel corporate-jumbo">
   <div class="container">
@@ -80,60 +79,75 @@
       <tr id="morning">
         <th>上午</th>
         <td class="active">
-          <i class="fa fa-check-circle"></i>
+            <input type="checkbox" name="vehicle" value="Car">
         </td>
         <td class="active">
-          <i class="fa fa-check-circle"></i>
+          <input type="checkbox" name="vehicle" value="Car">
         </td>
         <td class="active">
-          <i class="fa fa-check-circle"></i>
+          <input type="checkbox" name="vehicle" value="Car">
         </td>
         <td class="active">
-          <i class="fa fa-check-circle"></i>
+          <input type="checkbox" name="vehicle" value="Car">
         </td>
         <td class="active">
-          <i class="fa fa-check-circle"></i>
+          <input type="checkbox" name="vehicle" value="Car">
         </td>
         <td>
-          <i class="fa fa-check-circle"></i>
-        </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                            </tr>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+      </tr>
       <tr id="afternoon">
         <th>下午</th>
         <td>
-          <i class="fa fa-check-circle"></i>
-        </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                            </tr>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+      </tr>
       <tr id="night">
         <th>晚上</th>
         <td>
-          <i class="fa fa-check-circle"></i>
-        </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                                        <td>
-        <i class="fa fa-check-circle"></i>
-      </td>                            </tr>
-
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+        <td>
+          <input type="checkbox" name="vehicle" value="Car">
+        </td>
+      </tr>
       </tbody></table>
     </div>
     <div class="col-lg-4">
@@ -150,13 +164,13 @@
 </div>
 
 <center>
-<a class="btn btn-primary" style="width:400px;" href="{% url 'accounts:signup' %}" role="button">预约</a>
+<a class="btn btn-primary" style="width:400px;" href="{% url 'teacher-booking' %}" role="button">预约</a>
 </center>
 
 {% endblock container %}
 
 {% block scripts %}
-<script>
+<script type="text/javascript">
 $.fn.stars = function() {
   return $(this).each(function() {
     $(this).html($('<span />').width(Math.max(0, (Math.min(5, parseFloat($(this).html())))) * 16));

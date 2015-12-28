@@ -64,7 +64,11 @@ class TeacherDetailView(generic.detail.DetailView):
 class TeacherCreateView(generic.edit.CreateView):
     model = Teacher
     template_name = "teacher_create.html"
-    fields = ['id', 'full_name', 'gender', 'school', 'department', 'picture', 'verify_picture']
+    fields = ['id', 'full_name', 'gender', 'school', 'department', 'picture', 'available', 'verify_picture']
+
+    def form_valid(self, form):
+        # form.instance.available = "3,2"
+        return super(TeacherCreateView, self).form_valid(form)
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):

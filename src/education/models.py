@@ -71,7 +71,10 @@ class Teacher(models.Model):
                                         upload_to='teacher_vers/%Y-%m-%d/',
                                        null=True,
                                        blank=True)
+    available = models.CharField(max_length=200, null=True, blank=True)
+    available.verbose_name = "可选时间"
     price = models.IntegerField(default=50)
+    #TODO: price is related with level
     level = models.ForeignKey(Level, null=True, blank=True)
     achievement = models.TextField(max_length=1000, null=True, blank=True)
     description = models.TextField(max_length=1000, null=True, blank=True)

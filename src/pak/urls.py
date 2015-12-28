@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^', include(accounts.urls, namespace='accounts')),
     url(r'^teacher/(?P<pk>\d+)/$', education.views.TeacherDetailView.as_view(), name='teacher-detail'),
     url(r'^teacher/create/$', education.views.TeacherCreateView.as_view(), name='teacher-create'),
+    url(r'^teacher/booking/$', education.views.TeacherBookingView.as_view(), name='teacher-booking'),
     url(r'problem-all/$', education.views.ProblemListView.as_view(), name='problem-list'),
     url(r'problem/upload$', education.views.ProblemUploadView.as_view(), name='problem-upload'),
     url(r'^problem/(?P<pk>\d+)/$', education.views.ProblemDetailView.as_view(), name='problem-detail'),
