@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-
+from authtools.models import User
 
 GENDER_CHOICES = (
     ('M', '男'),
@@ -106,3 +106,21 @@ class Student(models.Model):
 
     def __unicode__(self):
         return self.full_name
+
+class Problem(models.Model):
+    title = models.CharField(max_length=50)
+    picture = models.ImageField('Problem picture',
+                                 upload_to='problem_pics/%Y-%m-%d/',
+                                 null=True,
+                                 blank=True)
+    description = models.TextField(max_length=1000, null=True, blank=True)
+    author = models.ForeignKey(User)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return "/problem/%i/" % self.id
+
+    def __unicode__(self):
+        return self.title
+

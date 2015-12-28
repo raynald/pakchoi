@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}难题列表{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="problem-list" %}
+{% endblock %}
+
+{% block splash %}
+
+{% endblock splash %}
+
+{% block container %}
+{% for problem in object_list %}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<p>{{problem.title}}</p>
+{% endfor %}
+{% endblock container %}
+
+{% block scripts %}
+
+{% endblock scripts %}

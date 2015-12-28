@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}题目详情{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="problem-list" %}
+{% endblock %}
+
+{% block styles %}
+{% endblock styles %}
+
+<!-- Benefits of the Django application -->
+{% block splash %}
+<div class="jumbotron jumbotron-carousel corporate-jumbo">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-8" style="text-align:center">
+        <!--<center>-->
+        <h1>{{ object.title }}</h1>
+          <!--</center>-->
+      </div>
+      <div class="col-md-4 col-sm-4">
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock splash %}
+
+{% block container %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h1>题目描述</h1>
+      {% if object.description %}
+        <p>{{ object.description }}</p>
+      {% endif %}
+      {% if object.picture %}}
+        <div class="text-center"><img class="img-circle centered" src="/media/{{ teacher.picture }}" alt="profile pic"></div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<center>
+<a class="btn btn-primary" style="width:400px;" href="{% url 'accounts:signup' %}" role="button">我要解答</a>
+</center>
+
+{% endblock container %}
+
+{% block scripts %}
+{% endblock scripts %}
+
