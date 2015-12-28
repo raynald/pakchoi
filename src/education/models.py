@@ -31,6 +31,7 @@ class Subject(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=50)
+    pinyin = models.CharField(max_length=50)
 
     def __unicode__(self):
         return self.name
@@ -109,14 +110,20 @@ class Student(models.Model):
 
 class Problem(models.Model):
     title = models.CharField(max_length=50)
+    title.verbose_name = '难题类别'
     picture = models.ImageField('Problem picture',
                                  upload_to='problem_pics/%Y-%m-%d/',
                                  null=True,
                                  blank=True)
+    picture.verbose_name = '问题配图'
     description = models.TextField(max_length=1000, null=True, blank=True)
+    description.verbose_name = '问题描述'
     author = models.ForeignKey(User)
+    author.verbose_name = '上传者'
     created_at = models.DateTimeField(auto_now_add=True)
+    created_at.verbose_name = '创建时间'
     updated_at = models.DateTimeField(auto_now=True)
+    updated_at.verboes_name = '上次修改时间'
 
     def get_absolute_url(self):
         return "/problem/%i/" % self.id

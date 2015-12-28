@@ -3,7 +3,7 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block title %}{{ block.super }}Home{% endblock %}
+{% block title %}{{ block.super }}首页{% endblock %}
 
 {% block navbar-left %}
     {% include "_navbar.html" with active_link="home" %}
@@ -28,11 +28,34 @@
                 <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">马上免费注册体验!</a>
                 <p/>
                 <p align="left">我是学生,找找有没有合适的老师:</p>
+                选择你所在的城市和地区:
+                <select class="c-select bfh-states" id="city" name="city">
+                    <option value="">--</option>
+                    {% for city in cities %}
+                        <option value="{{ city.id }}">{{ city.name }}</option>
+                    {% endfor %}
+                </select>
+                <select class="c-select bfh-selectbox" id="district" name="distrct">
+                    <option value="">--</option>
+                    {% for district in districts %}
+                        <option value="{{ district.id }}" class="{{ district.city.id }}">{{ district.name }}</option>
+                    {% endfor %}
+                </select>
+                选择你所在的年级段:
+                <select class="c-select" id="grade" name="grade">
+                    <option value="">--</option>
+                    {% for grade in grades %}
+                    <option value="{{ grade }}">{{ grade.title }}</option>
+                    {% endfor %}
+                </select>
                 <form id="search_teacher_form" action="{% url 'teacher-list' %}" method="get" accept-charset="utf-8">
-                    <input type="text" class="form-control" name="q" id="search1" placeholder="输入你需要补习的科目（如: 初中数学, 物理）" style="width: 300px">
-                    <button class="btn-danger" type="submit">搜 索</button>
+                    <input type="text" class="form-control" name="q" id="search1" placeholder="输入你需要补习的科目（如: 数学, 物理）" style="width: 300px">
+                    <button class="btn-danger" type="submit" onclick="up()">搜 索</button>
                 </form>
                 <p/>
+                我想让人帮忙解道题:
+                <a class="btn btn-primary" href="{% url 'problem-upload' %}" role="button">上传难题</a>
+                <br/>
                 <p>我是老师,想要寻找学生:</p>
                 <form>
                     <input type="text" class="form-control" name="search_student" id="search2" placeholder="输入你擅长的科目（如: 初中数学, 物理）" style="width: 300px">
@@ -76,5 +99,12 @@
 {% block scripts %}
 <script src="{% static 'site/js/site.js' %}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="{% static 'site/js/jquery.chained.min.js' %}"></script>
+<script>
+    $("#district").chained("#city");
+    function up() {
+        q = $("#city").val();
+    }
+</script>
 {% endblock scripts %}
 

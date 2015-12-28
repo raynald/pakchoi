@@ -9,39 +9,58 @@
   {% include "_navbar.html" with active_link="teacher-list" %}
 {% endblock %}
 
-{% block styles %}
-<style>
-    .star {
-        background-image: http://icon.zol-img.com.cn/products/v3/list/list20150210.png
-    }
-</style>
-{% endblock styles %}
+{% block splash %}
+<div class="jumbotron jumbotron-carousel" style="padding-top: 80px">
+<div class="container">
+    <a>所在城市:</a>
+    <select class="selectpicker" id="city">
+        <option value="">--</option>
+        {% for city in cities %}
+            {% if chose_city == city.id %}
+                <option value="{{ city.id }}" selected>{{ city.name }}</option>
+            {% else %}
+                <option value="{{ city.id }}">{{ city.name }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+    <a>年级:</a>
+    <select class="selectpicker" id="grade">
+        <option value="">--</option>
+        {% for grade in grades %}
+            {% if chose_grade == grade.id %}
+                <option value="{{ grade.id }}" selected>{{ grade.title }}</option>
+            {% else %}
+                <option value="{{ grade.id }}">{{ grade.title }}</option>
+            {% endif %}
+        {% endfor %}
+    </select>
+</div>
+</div>
+{% endblock %}
 
-<!-- Benefits of the Django application -->
 {% block container %}
+<a>选择科目:</a>
+{% for subject in subjects %}
+<span>
+    {% if subject.id in chose_sub %}
+        <input name="subject" type="checkbox" value="{{subject.id}}" checked/>
+    {% else %}
+        <input name="subject" type="checkbox" value="{{subject.id}}"/>
+    {% endif %}
+    <label for="subject">{{ subject.title }} </label>
+    </span>
+{% endfor %}
+<input type="button" onclick="genFilter();" value="筛选老师" />
 {% if object_list|length == 0 %}
     <h2>对不起!没有符合您要求的老师.</h2>
 {% else %}
-    <div class="list-title" style="padding-top: 70px">
-        <a>所在城市:</a>
-        <select class="selectpicker">
-            <option value="volvo">上海</option>
-            <option value="saab">北京</option>
-        </select>
-    </div>
-    <a>选择科目:</a>
-    <div id="subject_param" class="param-value-list">
-        {% for subject in subjects %}
-        <a href="?q={{subject.title}}"> {{ subject.title }} </a>
-        {% endfor %}
-    </div>
     <div>
     {% for teacher in object_list %}
         <div class="teacher-list">
         <a href="{% url 'teacher-detail' teacher.id %}"><img class="img-square centered" width="142" height="142" align="left" src="/media/{{ teacher.picture }}"></a>
         <div style="padding-left: 200px">
             <h3>
-            {{ teacher.full_name }}
+            {{ teacher.full_name }} {{ teacher.school }}
             </h3>
             <p>等级: {{ teacher.level }}</p>
             <p>
@@ -61,3 +80,22 @@
     </div>
 {% endif %}
 {% endblock container %}
+
+{% block scripts %}
+<script type="text/javascript">
+    function genFilter() {
+        var checkboxes = document.querySelectorAll('input[name="subject"]:checked'), values = [];
+        Array.prototype.forEach.call(checkboxes, function(el) {
+            values.push(el.value);
+        });
+        var url = window.location.href;
+        url = url.split("?")[0];
+        url += "?subject=" + values;
+        var city = $("#city").val();
+        url += "&city=" + city;
+        var grade = $("#grade").val();
+        url += "&grade=" + grade;
+        window.location.href = url;
+    }
+</script>
+{% endblock %}
