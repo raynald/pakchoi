@@ -10,6 +10,16 @@
     <meta name="description" content="{% block description %}{% endblock description %}">
     <meta name="author" content="Arun Ravindran">
     <link rel="shortcut icon" href="{% static 'site/ico/favicon.ico' %}">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+      .carousel-inner > .item > img,
+      .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+      }
+    </style>
 
     <title>{% block title %}{% include "_brandname.html" %} :: {% endblock %}</title>
 
@@ -53,6 +63,7 @@
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             {% block navbar-left %}{% endblock %}
+            <li><a><i class="fa fa-phone"></i>400-820-5800</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% block navbar-right %}
@@ -112,16 +123,74 @@
       <a name="contact"></a>
       <div class="container">
             <div class="footer">
-        <div class="row">
-          <div class="col-lg-6">
-              <p>&copy; Company {% now 'Y' %}</p>
-          </div>
-          <div class="col-lg-6 text-right">
-            Connect with us on
-            <a href="#"><i class="fa fa-facebook"></i> Facebook</a> or
-            <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
-          </div>
-        </div>
+              <div class="inner fn-clear">
+                <table>
+                  <tbody>
+                    <td style="padding:0 125px 0 15px;">
+                      <div class="modle fn-left">
+                        <h3>
+                          关于边际
+                          <div class="line">
+                            <em></em>
+                            <i></i>
+                          </div>
+                        </h3>
+                        <div class="list fn-clear">
+                          <ul>
+                            <li><a target="_blank" href="http://www.yousi.com/instructions/news/id/13/n/23">了解状元到家</a></li><li><a target="_blank" href="http://www.yousi.com/instructions/news/id/13/n/30">加入我们</a></li><li><a target="_blank" href="http://www.yousi.com/instructions/news/id/13/n/25">联系我们</a></li><li><a target="_blank" href="http://www.yousi.com/instructions/news/id/13/n/27">免责声明</a></li>                </ul>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="padding:0 125px 0 15px;">
+                      <div class="modle fn-left">
+                  <h3>
+                    帮助中心
+                    <div class="line">
+                      <em></em>
+                      <i></i>
+                    </div>
+                  </h3>
+                  <div class="list fn-clear">
+                    <ul>
+                      <li><a target="_blank" href="http://www.yousi.com/instructions/news/id/11/n/19">家长初次使用</a></li><li><a target="_blank" href="http://www.yousi.com/instructions/news/id/11/n/97">家教基础价格</a></li><li><a target="_blank" href="http://www.yousi.com/instructions/news/id/12/n/28">教员申请</a></li><li><a target="_blank" href="http://www.yousi.com/instructions/news/id/13/n/26">高校合作</a></li>                </ul>
+                  </div>
+                </div>
+                    </td>
+                    <td style="padding:0 125px 0 15px;">
+                      <div class="modle modle2 fn-left">
+                  <h3>
+                    友情链接
+                    <div class="line">
+                      <em></em>
+                      <i></i>
+                    </div>
+                  </h3>
+                  <div class="list fn-clear">
+                    <ul class="fn-left">
+                      <li><a target="_blank" href="http://sjtu.yousi.com">上海交通大学家教</a></li><li><a target="_blank" href="http://ecust.yousi.com">华东理工大学家教</a></li><li><a target="_blank" href="http://shu.yousi.com">上海大学家教</a></li><li><a target="_blank" href="http://shisu.yousi.com/">上海外国语大学</a></li>                </ul>
+                  </div>
+                </div>
+                    </td>
+                    <td style="padding:0 125px 0 15px;">
+                      <div class="phone fn-right">
+                  <em></em>
+                  <h5>400-876-0803</h5>
+                  <p>（9:00 - 22:00）</p>
+                </div>
+                    </td>
+                  <tbody>
+                </table>
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <p>Copyright &copy;2015-{% now 'Y' %} 边际教育版权所有 - ICP备14001293号-2</p>
+                </div>
+                <div class="col-lg-6 text-right">
+                  联系我们
+                  <a href="#"><i class="fa fa-facebook"></i> Facebook</a> or
+                  <a href="#"><i class="fa fa-twitter"></i> Twitter</a>
+                </div>
+              </div>
             </div>
       </div>
     {% endblock %}

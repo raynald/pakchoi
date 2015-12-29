@@ -19,33 +19,52 @@
 {% endblock %}
 
 {% block splash %}
-    <div class="jumbotron jumbotron-carousel corporate-jumbo">
+    <div class="jumbotron jumbotron-carousel">
         <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-8">
-                <h1>{% include "_brandname.html" %}</h1>
-                <p>最专业的团队,最优秀的师资,最快捷的服务</p>
-                <a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">马上免费注册体验!</a>
-                <p/>
-                <p align="left">我是学生,找找有没有合适的老师:</p>
-                <form id="search_teacher_form" action="{% url 'teacher-list' %}" method="get" accept-charset="utf-8">
-                    <input type="text" class="form-control" name="word" id="search1" placeholder="输入你需要补习的科目（如: 数学, 物理）" style="width: 300px">
-                    <button class="btn-danger" type="submit" onclick="up()">搜 索</button>
-                </form>
-                <p/>
-                我想让人帮忙解道题:
-                <a class="btn btn-primary" href="{% url 'problem-upload' %}" role="button">上传难题</a>
-                <br/>
-                <p>我是老师,想要寻找学生:</p>
-                <form>
-                    <input type="text" class="form-control" name="search_student" id="search2" placeholder="输入你擅长的科目（如: 初中数学, 物理）" style="width: 300px">
-                    <button class="btn-danger" type="submit">搜 索</button>
-                </form>
-        </div>
-        <div class="col-md-4 col-sm-4">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                    <li data-target="#myCarousel" data-slide-to="4"></li>
+                </ol>
 
-        </div>
-      </div>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="/media/1.png" alt="Chania" width="460" height="345">
+                    </div>
+
+                    <div class="item">
+                        <img src="/media/2.jpg" alt="Chania" width="460" height="345">
+                    </div>
+
+                    <div class="item">
+                        <img src="/media/3.jpg" alt="Flower" width="460" height="345">
+                    </div>
+
+                    <div class="item">
+                        <img src="/media/4.jpg" alt="Flower" width="460" height="345">
+                    </div>
+
+                    <div class="item">
+                        <img src="/media/5.jpg" alt="Flower" width="460" height="345">
+                    </div>
+
+                </div>
+
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
     </div>
   </div>
 {% endblock splash %}
@@ -55,21 +74,63 @@
 <a name="about"></a>
 
 <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-sm-8">
+            <h1 align="center">{% include "_brandname.html" %}</h1>
+            <h1><strong>最专业的团队,最优秀的师资,最快捷的服务</strong></h1>
+            <!--<a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">马上免费注册体验!</a>-->
+            <p/>
+            <table>
+                <tbody>
+                    <td style="padding:0 225px 0 15px;">
+                        <div>
+                            <p align="left">我是学生,找找有没有合适的老师:</p>
+                            <form id="search_teacher_form" action="{% url 'teacher-list' %}" method="get" accept-charset="utf-8">
+                                <input type="text" class="form-control" name="word" id="search1" placeholder="输入你需要补习的科目（如: 数学, 物理）" style="width: 300px">
+                                <button class="btn-danger" type="submit" onclick="up()">搜 索</button>
+                            </form>
+                            <p/>
+                        </div>
+                        <div>
+                            我想让人帮忙解道题:
+                            <a class="btn btn-primary" href="{% url 'problem-upload' %}" role="button">上传难题</a>
+                        </div>
+                    </td>
+                    <td style="padding:0 225px 0 15px;">
+                        <div>
+                            <p>我是老师,想要寻找学生:</p>
+                            <form>
+                                <input type="text" class="form-control" name="search_student" id="search2" placeholder="输入你擅长的科目（如: 初中数学, 物理）" style="width: 300px">
+                                <button class="btn-danger" type="submit">搜 索</button>
+                            </form>
+                        </div>
+                        <div>
+                            我想让人帮忙解道题:
+                            <a class="btn btn-primary" href="{% url 'problem-upload' %}" role="button">上传难题</a>
+                        </div>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
   <div class="row">
+      <h1>媒体资讯</h1>
     <div class="col-lg-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+      <h2>【36氪】“状元到家”荣膺NEXT年度最佳家教O2O产品</h2>
+      <p>
+          状元到家荣膺NEXT年度最佳家教O2O产品，同时上榜的还有“请他教”“跟谁学”“疯狂老师”等家教产品。
+      </p>
+      <p><a class="btn btn-primary" href="#" role="button">完整内容 &raquo;</a></p>
     </div>
     <div class="col-lg-4">
-      <h2>Heading</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+      <h2>【36氪】“状元到家”在“红海”的家教O2O市场杀出一条道路</h2>
+        <p>家教 O2O 市场的火热有目共睹 —— 疯狂补贴，巨额融资，传统机构纷纷卷入，融到 B 轮之后的公司纷纷在强调一点就是“赛道关闭”。从大的角度上来看，想在这块市场上再找到一块未被耕耘的处女地几乎已经不太可能了，后续的进入者必须另寻他路。</p>
+      <p><a class="btn btn-primary" href="#" role="button">完整内容 &raquo;</a></p>
     </div>
     <div class="col-lg-4">
-      <h2>Heading</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-      <p><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+      <h2>【东方财经】边际CEO周兴天深刻解读在线教育市场（视频）</h2>
+      <p>家教 O2O 市场的火热有目共睹 —— 疯狂补贴，巨额融资，传统机构纷纷卷入，融到 B 轮之后的公司纷纷在强调一点就是“赛道关闭”。从大的角度上来看，想在这块市场上再找到一块未被耕耘的处女地几乎已经不太可能了，后续的进入者必须另寻他路。</p>
+      <p><a class="btn btn-primary" href="#" role="button">完整内容 &raquo;</a></p>
     </div>
   </div>
 </div>
