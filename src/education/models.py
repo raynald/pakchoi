@@ -136,3 +136,7 @@ class Problem(models.Model):
     def __unicode__(self):
         return self.title
 
+
+# class Event(models.Model):
+#     teacher = models.ForeignKey(Teacher)
+#     student = models.ForeignKey(Student)
