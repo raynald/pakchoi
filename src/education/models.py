@@ -78,6 +78,8 @@ class Teacher(models.Model):
     level = models.ForeignKey(Level, null=True, blank=True)
     achievement = models.TextField(max_length=1000, null=True, blank=True)
     description = models.TextField(max_length=1000, null=True, blank=True)
+    create_by = models.ForeignKey(User)
+    create_by.verbose_name = '创建者'
 
     def get_absolute_url(self):
         return "/teacher/%i/" % self.id
@@ -114,7 +116,7 @@ class Student(models.Model):
 class Problem(models.Model):
     title = models.CharField(max_length=50)
     title.verbose_name = '难题类别'
-    picture = models.ImageField('Problem picture',
+    picture = models.ImageField('上传问题相关图片',
                                  upload_to='problem_pics/%Y-%m-%d/',
                                  null=True,
                                  blank=True)

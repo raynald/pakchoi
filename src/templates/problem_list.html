@@ -9,19 +9,58 @@
   {% include "_navbar.html" with active_link="problem-list" %}
 {% endblock %}
 
+{% block styles %}
+{{ block.super }}
+<style type="text/css">
+  tr:hover{
+  background-color: #ffa;
+  }
+</style>
+{% endblock styles %}
+
+
 {% block splash %}
 
 {% endblock splash %}
 
 {% block container %}
-{% for problem in object_list %}
 <br/>
 <br/>
 <br/>
 <br/>
 <br/>
-<p>{{problem.title}}</p>
-{% endfor %}
+<table>
+  <tbody>
+    {% for problem in object_list %}
+    <tr>
+    <td>
+      <div>
+        <h2>{{ problem.title }}</h2>
+      </div>
+    </td>
+    <td>
+      <div>
+        <p>{{ problem.description }}</p>
+      </div>
+    </td>
+    <td>
+      <a href="{% url 'problem-detail' problem.id %}">
+        {% if problem.picture %}
+        <img class="img-square centered" width="252" height="142" align="left" src="/media/{{ problem.picture }}">
+        {% endif %}
+      </a>
+    </td>
+      <td>
+        <div class="control">
+          <a href="{% url 'problem-detail' problem.id %}" target="_blank" alt="detail" title="detail" class="btn btn-control">查看详情</a>
+          <a href="javascript:;" class="btn appoint_current">我会解!</a>
+        </div>
+      </td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock container %}
 
 {% block scripts %}

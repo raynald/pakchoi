@@ -67,7 +67,7 @@ class TeacherCreateView(generic.edit.CreateView):
     fields = ['id', 'full_name', 'gender', 'school', 'department', 'picture', 'available', 'verify_picture']
 
     def form_valid(self, form):
-        # form.instance.available = "3,2"
+        form.instance.create_by = self.request.user
         return super(TeacherCreateView, self).form_valid(form)
 
     @method_decorator(login_required)

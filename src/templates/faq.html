@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block styles %}
+{{ block.super }}
 <link href="{% static 'site/css/main.css' %}" rel="stylesheet">
 <link href="{% static 'site/css/style.css' %}" rel="stylesheet">
 {% endblock styles %}
@@ -22,7 +23,7 @@
     <li><a class="selected" href="#basics">基本问题</a></li>
     <li><a href="#mobile">移动端</a></li>
     <li><a href="#account">帐户</a></li>
-    <li><a href="#payments">收费</a></li>
+    <li><a href="#payments">收费</a></li>w
     <li><a href="#privacy">隐私</a></li>
     <li><a href="#delivery">服务</a></li>
   </ul> <!-- cd-faq-categories -->

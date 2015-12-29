@@ -3,5 +3,6 @@
 <li {% if active_link == "teacher-create" %}class="active"{% endif %}><a href="{% url 'teacher-create' %}">成为老师</a></li>
 <li {% if active_link == "problem-list" %}class="active"{% endif %}><a href="{% url 'problem-list' %}">难题列表</a></li>
 <li {% if active_link == "problem-upload" %}class="active"{% endif %}><a href="{% url 'problem-upload' %}">上传难题</a></li>
+<li {% if active_link == "app" %}class="active"{% endif %}><a href="{% url 'app' %}">App中心</a></li>
 <li {% if active_link == "faq" %}class="active"{% endif %}><a href="{% url 'faq' %}">常见问题</a></li>
 <li {% if active_link == "about" %}class="active"{% endif %}><a href="{% url 'about' %}">关于我们</a></li>

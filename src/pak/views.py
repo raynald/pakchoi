@@ -11,6 +11,9 @@ class HomePage(generic.TemplateView):
         context['grades'] = Grade.objects.all()
         return context
 
+class AppPage(generic.TemplateView):
+    template_name = "app.html"
+
 class FAQPage(generic.TemplateView):
     template_name = "faq.html"
 
