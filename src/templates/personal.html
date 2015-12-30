@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}个人空间{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="myspace" %}
+{% endblock %}
+
+{% block splash %}
+<div class="jumbotron jumbotron-carousel">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-8" style="text-align:center">
+        <h1>个人空间</h1>
+      </div>
+      <div class="col-md-4 col-sm-4">
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock splash %}
+{% block container %}
+<div class="container">
+  <div class="row">
+    <table>
+    <tbody>
+    <tr>
+    <td>
+      <a href="">我的订单</a>
+      </td>
+    <!--<td>-->
+      <!--<a href="">我的学生</a>-->
+    <!--</td>-->
+    </tr>
+    <tr>
+    <td>
+      <a href="{% url 'myuploaded' %}">我上传的难题</a>
+      </td>
+    <td>
+      <a href="{% url 'myanswered' %}">我回答的难题</a>
+    </td>
+    </tr>
+    </tbody>
+      </table>
+  </div>
+</div>
+
+{% endblock container %}
+
+{% block scripts %}
+{% endblock scripts %}

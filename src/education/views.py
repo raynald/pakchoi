@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.views import generic
 from django.shortcuts import render, render_to_response
-from models import Teacher, Subject, Problem, City, Grade
+from models import Teacher, Subject, Problem, City, Grade, Answer
 from forms import TeacherBookingForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -111,3 +111,48 @@ class ProblemDetailView(generic.detail.DetailView):
         queryset = queryset.filter(id=self.kwargs['pk'])
         return queryset.first()
 
+
+class UploadedProblemListView(generic.ListView):
+    template_name = "uploaded_problem_list.html"
+    model = Problem
+
+    def get_queryset(self):
+        queryset = super(UploadedProblemListView, self).get_queryset()
+        queryset = queryset.filter(author=self.request.user)
+        return queryset
+
+
+class SubmittedAnswerListView(generic.ListView):
+    template_name = "submitted_answer_list.html"
+    model = Answer
+
+    def get_queryset(self):
+        queryset = super(SubmittedAnswerListView, self).get_queryset()
+        queryset = queryset.filter(author=self.request.user)
+        return queryset
+
+
+class AnswerCreateView(generic.edit.CreateView):
+    model = Answer
+    template_name = "answer_create.html"
+    fields = ['picture', 'description']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(AnswerCreateView, self).form_valid(form)
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(self.__class__, self).dispatch(request, *args, **kwargs)
+
+
+class AnswerDetailView(generic.detail.DetailView):
+    queryset = Answer.objects.all()
+    model = Answer
+    template_name = "answer_detail.html"
+    query_pk_and_slug = True
+
+    def get_object(self, *args, **kwargs):
+        queryset = super(AnswerDetailView, self).get_queryset()
+        queryset = queryset.filter(id=self.kwargs['pk'])
+        return queryset.first()

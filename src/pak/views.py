@@ -1,5 +1,7 @@
 from django.views import generic
 from education.models import City, District, Grade
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 class HomePage(generic.TemplateView):
     template_name = "home.html"
@@ -20,3 +22,9 @@ class FAQPage(generic.TemplateView):
 class AboutPage(generic.TemplateView):
     template_name = "about.html"
 
+class PersonalPage(generic.TemplateView):
+    template_name = "personal.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(self.__class__, self).dispatch(request, *args, **kwargs)

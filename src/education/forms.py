@@ -13,6 +13,12 @@ CHOICES = (
     ('7', '初中一年级'),
 )
 
+TIME_CHOICES = (
+    ('1', '上午'),
+    ('2', '下午'),
+    ('3', '晚上'),
+)
+
 subject_full = Subject.objects.all()
 
 SUBJECT_CHOICES = ()
@@ -23,7 +29,9 @@ class TeacherBookingForm(forms.Form):
     grade = forms.ChoiceField(choices = CHOICES, required=True, label='年级')
     subjects = forms.MultipleChoiceField(required=True,
                                                widget=forms.CheckboxSelectMultiple, choices=SUBJECT_CHOICES)
-    # time =
-    name = forms.CharField()
-    mobile = forms.IntegerField()
-    # TODO: payment
+    prefered_date = forms.DateField(widget=forms.TextInput(attrs={'class':'datepicker'}), label='日期')
+    prefered_time = forms.ChoiceField(choices = TIME_CHOICES, required=True, label='时间')
+    name = forms.CharField(label='学生姓名')
+    mobile = forms.IntegerField(label='家长联系电话')
+    # TODO: problem =
+    # TODO: payment =

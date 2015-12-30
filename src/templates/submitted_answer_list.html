@@ -3,7 +3,7 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block title %}{{ block.super }}难题列表{% endblock %}
+{% block title %}{{ block.super }}回答列表{% endblock %}
 
 {% block navbar-left %}
   {% include "_navbar.html" with active_link="problem-list" %}
@@ -35,11 +35,6 @@
     <tr>
     <td>
       <div>
-        <h2>{{ problem.title }}</h2>
-      </div>
-    </td>
-    <td>
-      <div>
         <p>{{ problem.description }}</p>
       </div>
     </td>
@@ -50,13 +45,6 @@
         {% endif %}
       </a>
     </td>
-      <td>
-        <div class="control">
-          <a href="{% url 'problem-detail' problem.id %}" target="_blank" alt="detail" title="detail" class="btn btn-control">查看详情</a>
-          <a href="{% url 'answer-create' %}" class="btn appoint_current">我会解!</a>
-        </div>
-      </td>
-
     </tr>
     {% endfor %}
   </tbody>

@@ -113,6 +113,7 @@ class Student(models.Model):
     def __unicode__(self):
         return self.full_name
 
+
 class Problem(models.Model):
     title = models.CharField(max_length=50)
     title.verbose_name = '难题类别'
@@ -129,6 +130,7 @@ class Problem(models.Model):
     created_at.verbose_name = '创建时间'
     updated_at = models.DateTimeField(auto_now=True)
     updated_at.verboes_name = '上次修改时间'
+    solved = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return "/problem/%i/" % self.id
@@ -137,6 +139,22 @@ class Problem(models.Model):
         return self.title
 
 
-# class Event(models.Model):
+class Answer(models.Model):
+    picture = models.ImageField('答案相关图片',
+                                upload_to='answer_pics/%Y-%m-%d/',
+                                null=True,
+                                blank=True)
+    picture.verbose_name = '答案配图'
+    description = models.TextField(max_length=1000, null=True, blank=True)
+    description.verbose_name = '答案描述'
+    problem = models.ForeignKey(Problem)
+    author = models.ForeignKey(User)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_at.verbose_name = '创建时间'
+    updated_at = models.DateTimeField(auto_now=True)
+    updated_at.verboes_name = '上次修改时间'
+
+
+# class TeachingEvent(models.Model):
 #     teacher = models.ForeignKey(Teacher)
 #     student = models.ForeignKey(Student)

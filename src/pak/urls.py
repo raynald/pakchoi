@@ -17,11 +17,15 @@ urlpatterns = [
     url(r'^', include(accounts.urls, namespace='accounts')),
     url(r'^teacher/(?P<pk>\d+)/$', education.views.TeacherDetailView.as_view(), name='teacher-detail'),
     url(r'^teacher/create/$', education.views.TeacherCreateView.as_view(), name='teacher-create'),
-    url(r'^teacher/booking/$', education.views.TeacherBookingView.as_view(), name='teacher-booking'),
+    url(r'^teacher/booking/(?P<pk>\d+)/$', education.views.TeacherBookingView.as_view(), name='teacher-booking'),
     url(r'problem-all/$', education.views.ProblemListView.as_view(), name='problem-list'),
     url(r'problem/upload$', education.views.ProblemUploadView.as_view(), name='problem-upload'),
     url(r'^problem/(?P<pk>\d+)/$', education.views.ProblemDetailView.as_view(), name='problem-detail'),
     url(r'app/$', views.AppPage.as_view(), name='app'),
+    url(r'myspace/$', views.PersonalPage.as_view(), name='myspace'),
+    url(r'myspace/uploaded$', education.views.UploadedProblemListView.as_view(), name='myuploaded'),
+    url(r'myspace/answered', education.views.SubmittedAnswerListView.as_view(), name='myanswered'),
+    url(r'answer/create$', education.views.AnswerCreateView.as_view(), name='answer-create'),
 ]
 
 # User-uploaded files like profile pics need to be served in development
