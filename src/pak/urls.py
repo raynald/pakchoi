@@ -9,7 +9,6 @@ import education.views
 
 urlpatterns = [
     url(r'^$', views.HomePage.as_view(), name='home'),
-    url(r'^teacher-all/$', education.views.TeacherListView.as_view(), name='teacher-list'),
     url(r'^faq/$', views.FAQPage.as_view(), name='faq'),
     url(r'^about/$', views.AboutPage.as_view(), name='about'),
     url(r'^users/', include(profiles.urls, namespace='profiles')),
@@ -18,7 +17,12 @@ urlpatterns = [
     url(r'^teacher/(?P<pk>\d+)/$', education.views.TeacherDetailView.as_view(), name='teacher-detail'),
     url(r'^teacher/create/$', education.views.TeacherCreateView.as_view(), name='teacher-create'),
     url(r'^teacher/booking/(?P<pk>\d+)/$', education.views.TeacherBookingView.as_view(), name='teacher-booking'),
-    url(r'problem-all/$', education.views.ProblemListView.as_view(), name='problem-list'),
+    url(r'^teacher/all/$', education.views.TeacherListView.as_view(), name='teacher-list'),
+
+    url(r'^student/all/$', education.views.StudentListView.as_view(), name='student-list'),
+    url(r'^student/request/$', education.views.StudentRequestView.as_view(), name='student-request'),
+
+    url(r'problem/all/$', education.views.ProblemListView.as_view(), name='problem-list'),
     url(r'problem/upload$', education.views.ProblemUploadView.as_view(), name='problem-upload'),
     url(r'^problem/(?P<pk>\d+)/$', education.views.ProblemDetailView.as_view(), name='problem-detail'),
     url(r'app/$', views.AppPage.as_view(), name='app'),

@@ -155,6 +155,8 @@ class Answer(models.Model):
     updated_at.verboes_name = '上次修改时间'
 
 
-# class TeachingEvent(models.Model):
-#     teacher = models.ForeignKey(Teacher)
-#     student = models.ForeignKey(Student)
+class Order(models.Model):
+    teacher = models.ForeignKey(Teacher)
+    student = models.ForeignKey(Student)
+    #TODO: state =  Enum
+

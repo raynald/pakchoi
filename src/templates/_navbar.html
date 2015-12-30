@@ -1,8 +1,29 @@
 <li {% if active_link == "home" %}class="active"{% endif %}><a href="{% url 'home' %}">首页</a></li>
-<li {% if active_link == "teacher-list" %}class="active"{% endif %}><a href="{% url 'teacher-list' %}">教师列表</a></li>
-<li {% if active_link == "teacher-create" %}class="active"{% endif %}><a href="{% url 'teacher-create' %}">成为老师</a></li>
-<li {% if active_link == "problem-list" %}class="active"{% endif %}><a href="{% url 'problem-list' %}">难题列表</a></li>
-<li {% if active_link == "problem-upload" %}class="active"{% endif %}><a href="{% url 'problem-upload' %}">上传难题</a></li>
+<li class="dropdown">
+    <a class="btn dropdown-toggle" data-toggle="dropdown">教师
+    <span class="caret"></span></a>
+    <ul class="dropdown-menu nav navbar-nav">
+        <li><a href="{% url 'teacher-list' %}">教师列表</a></li>
+        <li {% if active_link == "teacher-create" %}class="active"{% endif %}><a href="{% url 'teacher-create' %}">教师入驻</a></li>
+
+    </ul>
+</li>
+<li class="dropdown">
+    <a class="btn dropdown-toggle" data-toggle="dropdown">难题
+        <span class="caret"></span></a>
+    <ul class="dropdown-menu nav navbar-nav">
+        <li {% if active_link == "problem-list" %}class="active"{% endif %}><a href="{% url 'problem-list' %}">难题列表</a></li>
+        <li {% if active_link == "problem-upload" %}class="active"{% endif %}><a href="{% url 'problem-upload' %}">上传难题</a></li>
+    </ul>
+</li>
+<li class="dropdown">
+    <a class="btn dropdown-toggle" data-toggle="dropdown">学生
+        <span class="caret"></span></a>
+    <ul class="dropdown-menu nav navbar-nav">
+        <li {% if active_link == "student-list" %}class="active"{% endif %}><a href="{% url 'student-list' %}">学生列表</a></li>
+        <li {% if active_link == "student-request" %}class="active"{% endif %}><a href="{% url 'student-request' %}">发布需求</a></li>
+    </ul>
+</li>
 <li {% if active_link == "app" %}class="active"{% endif %}><a href="{% url 'app' %}">App中心</a></li>
 <li {% if active_link == "faq" %}class="active"{% endif %}><a href="{% url 'faq' %}">常见问题</a></li>
 <li {% if active_link == "about" %}class="active"{% endif %}><a href="{% url 'about' %}">关于我们</a></li>
