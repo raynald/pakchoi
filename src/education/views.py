@@ -1,12 +1,17 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import unicode_literals
 
 from django.views import generic
 from django.shortcuts import render, render_to_response
-from models import Teacher, Subject, Problem, City, Grade, Answer, Student
+from models import Teacher, Subject, Problem, City, Grade, Answer, Student, Order
 from forms import TeacherBookingForm, StudentBookingForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
+from django.http import HttpResponseRedirect
+from actstream import action
+from actstream.models import Action
 
 class TeacherListView(generic.ListView):
     template_name = "teacher_list.html"
@@ -164,6 +169,11 @@ class ProblemUploadView(generic.edit.CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        if self.request.user.profile.coupon == 0:
+
+            return HttpResponseRedirect("/error")
+        self.request.user.profile.coupon -= 1
+        self.request.user.profile.save()
         return super(ProblemUploadView, self).form_valid(form)
 
     @method_decorator(login_required)
@@ -227,3 +237,32 @@ class AnswerDetailView(generic.detail.DetailView):
         queryset = super(AnswerDetailView, self).get_queryset()
         queryset = queryset.filter(id=self.kwargs['pk'])
         return queryset.first()
+
+class MyOrderListView(generic.ListView):
+    template_name = "my_order_list.html"
+    model = Order
+
+    def get_queryset(self):
+        queryset = super(MyOrderListView, self).get_queryset()
+        queryset = queryset.filter(user_teacher=self.request.user)
+        return queryset
+
+
+class MyLearningRecordView(generic.ListView):
+    template_name = "learning_record.html"
+    model = Order
+
+    def get_queryset(self):
+        queryset = super(MyLearningRecordView, self).get_queryset()
+        queryset = queryset.filter(user_student=self.request.user)
+        return queryset
+
+
+class MyMessageView(generic.ListView):
+    template_name = "my_message.html"
+    model = Action
+
+    def get_queryset(self):
+        queryset = super(MyMessageView, self).get_queryset()
+        queryset = queryset.filter(actor_object_id=self.request.user.id)
+        return queryset

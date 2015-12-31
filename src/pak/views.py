@@ -22,9 +22,5 @@ class FAQPage(generic.TemplateView):
 class AboutPage(generic.TemplateView):
     template_name = "about.html"
 
-class PersonalPage(generic.TemplateView):
-    template_name = "personal.html"
-
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        return super(self.__class__, self).dispatch(request, *args, **kwargs)
+class ErrorPage(generic.TemplateView):
+    template_name = "error.html"

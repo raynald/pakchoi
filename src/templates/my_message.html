@@ -3,20 +3,27 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
-{% block title %}{{ block.super }}App下载{% endblock %}
+{% block title %}{{ block.super }}我的消息{% endblock %}
 
 {% block navbar-left %}
-  {% include "_navbar.html" with active_link="app" %}
+  {% include "_navbar.html" with active_link="mymessage" %}
 {% endblock %}
 
 {% block splash %}
 <div class="jumbotron jumbotron-carousel">
 </div>
+
 {% endblock splash %}
+<!-- Benefits of the Django application -->
 {% block container %}
-<div class="container">
-  <h1>我们的App正在开发中, 敬请期待!</h1>
-</div>
+<table>
+  <tbody>
+  {% for message in object_list %}
+  {{ message }}
+  {% endfor %}
+  </tbody>
+</table>
+
 {% endblock container %}
 
 {% block scripts %}

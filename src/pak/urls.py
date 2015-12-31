@@ -7,6 +7,7 @@ import accounts.urls
 from . import views
 import education.views
 
+
 urlpatterns = [
     url(r'^$', views.HomePage.as_view(), name='home'),
     url(r'^faq/$', views.FAQPage.as_view(), name='faq'),
@@ -33,11 +34,17 @@ urlpatterns = [
     url(r'^problem/(?P<pk>\d+)/$', education.views.ProblemDetailView.as_view(), name='problem-detail'),
 
     url(r'app/$', views.AppPage.as_view(), name='app'),
-    url(r'myspace/$', views.PersonalPage.as_view(), name='myspace'),
+    url(r'myspace/message$', education.views.MyMessageView.as_view(), name='mymessage'),
     url(r'myspace/uploaded$', education.views.UploadedProblemListView.as_view(), name='myuploaded'),
     url(r'myspace/answered', education.views.SubmittedAnswerListView.as_view(), name='myanswered'),
+    url(r'myspace/order', education.views.MyOrderListView.as_view(), name='myorder'),
+    url(r'myspace/learning_record', education.views.MyLearningRecordView.as_view(), name='learning-record'),
     url(r'answer/create$', education.views.AnswerCreateView.as_view(), name='answer-create'),
+
+    url('^activity/', include('actstream.urls')),
+    url(r'error/$', views.ErrorPage.as_view(), name='error-page')
 ]
 
 # User-uploaded files like profile pics need to be served in development
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

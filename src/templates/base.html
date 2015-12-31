@@ -2,7 +2,6 @@
 <html lang="en">
     {% load staticfiles %}
     {% load thumbnail %}
-    
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -77,10 +76,11 @@
 			{{ user.get_full_name|truncatechars:20 }}
 			<span class="caret"></span>
 		    </a>
-		    
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="{% url 'profiles:show_self' %}">个人空间</a></li>
-                    <li><a href="{% url 'myuploaded' %}">我的订单</a></li>
+                    <li><a href="{% url 'mymessage' %}">我的消息</a></li>
+                    <li><a href="{% url 'myorder' %}">我的订单</a></li>
+                    <li><a href="{% url 'learning-record' %}">我的学习记录</a></li>
                     <li><a href="{% url 'myuploaded' %}">我上传的难题</a></li>
                     <li><a href="{% url 'myanswered' %}">我回答的难题</a></li>
                     <li><a href="{% url 'accounts:logout' %}">退出登录</a></li>
@@ -206,8 +206,21 @@
     {% block scripts %}
     {{block.super}}
     <script>
-      $('.dropdown-toggle').click(function(){
-        $(this).next(".dropdown-menu").toggle();
+      $(document).ready(function() {
+      function toggleNavbarMethod() {
+        if ($(window).width() > 768) {
+            $('.navbar .dropdown').on('mouseover', function(){
+                $('.dropdown-toggle', this).trigger('click');
+            }).on('mouseout', function(){
+                $('.dropdown-toggle', this).trigger('click').blur();
+            });
+        }
+        else {
+            $('.navbar .dropdown').off('mouseover').off('mouseout');
+        }
+      }
+      toggleNavbarMethod();
+      $(window).resize(toggleNavbarMethod);
       });
     </script>
     {% endblock scripts %}

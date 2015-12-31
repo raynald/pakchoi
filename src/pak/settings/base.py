@@ -63,6 +63,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'django.contrib.sites',
     'django.contrib.auth',
     'django_admin_bootstrapped',
     'django.contrib.admin',
@@ -77,7 +78,17 @@ INSTALLED_APPS = (
     'profiles',
     'accounts',
     'education',
+    # 'notification',
+    'actstream',
 )
+
+ACTSTREAM_SETTINGS = {
+    # 'MANAGER': 'actstream.managers.MyActionManager',
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'USE_JSONFIELD': True,
+    'GFK_FETCH_DEPTH': 1,
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

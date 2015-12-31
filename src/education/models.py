@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from authtools.models import User
+import datetime
 
 GENDER_CHOICES = (
     ('M', '男'),
@@ -159,8 +160,33 @@ class Answer(models.Model):
     updated_at.verboes_name = '上次修改时间'
 
 
+INIT = 0
+STUDENT_PAID = 1
+TEACHER_CONFIRMED = 2
+STUDENT_RATED = 3
+FINISH = 4
+
+STATUS_CHOICES = (
+    (INIT, "订单生成"),
+    (STUDENT_PAID, '学生已付款'),
+    (TEACHER_CONFIRMED, '老师已确认'),
+    (STUDENT_RATED, '学生已评价'),
+    (FINISH, '已完成'),
+)
+
+TIME_CHOICES = (
+    (1, '上午'),
+    (2, '下午'),
+    (3, '晚上'),
+)
+
 class Order(models.Model):
-    teacher = models.ForeignKey(Teacher)
-    student = models.ForeignKey(Student)
-    #TODO: state =  Enum
+    user_teacher = models.ForeignKey(User, related_name="user_teacher")
+    user_student = models.ForeignKey(User, related_name="user_student")
+    subjects = models.ManyToManyField(Subject)
+    date = models.DateField(default=datetime.date.today)
+    state =  models.IntegerField(choices=STATUS_CHOICES, default=INIT)
+    time = models.IntegerField(choices=TIME_CHOICES, default=3)
+    student_name = models.CharField(max_length=20, default="John Doe")
+    mobile = models.IntegerField(default=1520000000)
 

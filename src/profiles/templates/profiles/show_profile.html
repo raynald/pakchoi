@@ -2,6 +2,7 @@
 
 {% load staticfiles %}
 {% load thumbnail %}
+{% load activity_tags %}
 
 {% block title %}{{ block.super }}个人空间{% endblock %}
 
@@ -53,14 +54,22 @@
 		<a href="https://github.com/arocks/edge/issues/40" target="_blank"><span>No permalink. See this issue.</span></a>
 	  {% endif %}
 	</div>
-        <div class="panel-body">
-	  <strong>个性签名</strong>: {{ show_user.profile.bio }}
-	</div>
+    <div class="panel-body">
+      <strong>个性签名</strong>: {{ show_user.profile.bio }}
+    </div>
       </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">{{ show_user.get_full_name }}的动态
+            </div>
+            <div class="panel-body">
+                {% activity_stream 'actor' user %}
+                {% for action in stream %}
+                {% display_action action %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
   </div>
 </div>
 
 {% endblock %}
-
-

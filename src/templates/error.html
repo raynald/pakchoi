@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}失败{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="problem-upload" %}
+{% endblock %}
+
+{% block splash %}
+<div class="jumbotron jumbotron-carousel">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-8" style="text-align:center">
+        <h1>对不起,点券不够,请尽快充值!</h1>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock splash %}
+{% block container %}
+
+{% endblock container %}
+
+{% block scripts %}
+{{block.super}}
+{% endblock scripts %}

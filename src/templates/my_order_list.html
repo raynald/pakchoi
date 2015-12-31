@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}我的订单{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="problem-list" %}
+{% endblock %}
+
+{% block styles %}
+{{ block.super }}
+<style type="text/css">
+  tr:hover{
+  background-color: #ffa;
+  }
+</style>
+{% endblock styles %}
+
+
+{% block splash %}
+
+{% endblock splash %}
+
+{% block container %}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<table>
+  <tbody>
+    {% for order in object_list %}
+    <tr>
+    <td>
+      <div>
+        <h2>{{ order.student_name }}</h2>
+      </div>
+    </td>
+    <td>
+      <div>
+        <p>{{ order.date }}</p>
+      </div>
+    </td>
+      <td>
+        <div class="control">
+          <!--<a href="{% url 'order-detail' order.id %}" target="_blank" alt="detail" title="detail" class="btn btn-control">查看详情</a>-->
+          <!--<a href="{% url 'answer-create' %}" class="btn appoint_current">我会解!</a>-->
+        </div>
+      </td>
+
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock container %}
+
+{% block scripts %}
+{{block.super}}
+{% endblock scripts %}

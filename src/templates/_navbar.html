@@ -1,6 +1,6 @@
 <li {% if active_link == "home" %}class="active"{% endif %}><a href="{% url 'home' %}">首页</a></li>
 <li class="dropdown">
-    <a class="btn dropdown-toggle" data-toggle="dropdown">教师
+    <a class="dropdown-toggle" data-toggle="dropdown">教师
     <span class="caret"></span></a>
     <ul class="dropdown-menu nav navbar-nav">
         <li><a href="{% url 'teacher-list' %}">教师列表</a></li>
@@ -9,7 +9,7 @@
     </ul>
 </li>
 <li class="dropdown">
-    <a class="btn dropdown-toggle" data-toggle="dropdown">难题
+    <a class="dropdown-toggle" data-toggle="dropdown">难题
         <span class="caret"></span></a>
     <ul class="dropdown-menu nav navbar-nav">
         <li {% if active_link == "problem-list" %}class="active"{% endif %}><a href="{% url 'problem-list' %}">难题列表</a></li>
@@ -17,7 +17,7 @@
     </ul>
 </li>
 <li class="dropdown">
-    <a class="btn dropdown-toggle" data-toggle="dropdown">学生
+    <a class="dropdown-toggle" data-toggle="dropdown">学生
         <span class="caret"></span></a>
     <ul class="dropdown-menu nav navbar-nav">
         <li {% if active_link == "student-list" %}class="active"{% endif %}><a href="{% url 'student-list' %}">学生列表</a></li>
