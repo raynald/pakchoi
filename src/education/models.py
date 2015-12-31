@@ -78,7 +78,9 @@ class Teacher(models.Model):
     #TODO: price is related with level
     level = models.ForeignKey(Level, null=True, blank=True)
     achievement = models.TextField(max_length=1000, null=True, blank=True)
+    achievement.verbose_name = '战绩'
     description = models.TextField(max_length=1000, null=True, blank=True)
+    description.verbose_name = '自我介绍'
     create_by = models.ForeignKey(User)
     create_by.verbose_name = '创建者'
 

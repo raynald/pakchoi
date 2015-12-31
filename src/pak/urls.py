@@ -6,7 +6,7 @@ import profiles.urls
 import accounts.urls
 from . import views
 import education.views
-
+import notifications
 
 urlpatterns = [
     url(r'^$', views.HomePage.as_view(), name='home'),
@@ -41,7 +41,8 @@ urlpatterns = [
     url(r'myspace/learning_record', education.views.MyLearningRecordView.as_view(), name='learning-record'),
     url(r'answer/create$', education.views.AnswerCreateView.as_view(), name='answer-create'),
 
-    url('^activity/', include('actstream.urls')),
+    url('^inbox/notifications/', include(notifications.urls)), #, namespace='notifications')),
+
     url(r'error/$', views.ErrorPage.as_view(), name='error-page')
 ]
 

@@ -2,6 +2,7 @@
 <html lang="en">
     {% load staticfiles %}
     {% load thumbnail %}
+    {% load notifications_tags %}
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,6 +25,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
 
     <!-- Custom styles for this site -->
     {% block styles %}
@@ -78,7 +80,9 @@
 		    </a>
                   <ul class="dropdown-menu" role="menu">
                     <li><a href="{% url 'profiles:show_self' %}">个人空间</a></li>
-                    <li><a href="{% url 'mymessage' %}">我的消息</a></li>
+                    <li><a href="{% url 'mymessage' %}">我的消息
+                      {% live_notify_badge classes="badge" %}
+                        </a></li>
                     <li><a href="{% url 'myorder' %}">我的订单</a></li>
                     <li><a href="{% url 'learning-record' %}">我的学习记录</a></li>
                     <li><a href="{% url 'myuploaded' %}">我上传的难题</a></li>

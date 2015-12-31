@@ -36,6 +36,7 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
             ],
         },
     },
@@ -60,6 +61,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 ALLOWED_HOSTS = []
 
+SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = (
@@ -78,17 +80,8 @@ INSTALLED_APPS = (
     'profiles',
     'accounts',
     'education',
-    # 'notification',
-    'actstream',
+    'notifications',
 )
-
-ACTSTREAM_SETTINGS = {
-    # 'MANAGER': 'actstream.managers.MyActionManager',
-    'FETCH_RELATIONS': True,
-    'USE_PREFETCH': True,
-    'USE_JSONFIELD': True,
-    'GFK_FETCH_DEPTH': 1,
-}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

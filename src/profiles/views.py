@@ -5,7 +5,7 @@ from django.contrib import messages
 from braces.views import LoginRequiredMixin
 from . import forms
 from . import models
-from actstream.models import user_stream
+# from actstream.models import user_stream
 
 
 class ShowProfile(LoginRequiredMixin, generic.TemplateView):
@@ -13,7 +13,6 @@ class ShowProfile(LoginRequiredMixin, generic.TemplateView):
     http_method_names = ['get']
 
     def get(self, request, *args, **kwargs):
-        user_stream(request.user, with_user_activity=True)
         slug = self.kwargs.get('slug')
         if slug:
             profile = get_object_or_404(models.Profile, slug=slug)

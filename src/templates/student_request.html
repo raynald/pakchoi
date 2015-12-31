@@ -10,105 +10,106 @@
 {% endblock %}
 
 {% block splash %}
-<div class="jumbotron jumbotron-carousel corporate-jumbo">
-  <div class="container">
-    <center><h1>个人信息</h1></center>
-    <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-default">完成</button>
-    </form>
-  </div>
-  <div style="position: absolute;right: 80px; top: 350px">
-    <table>
-      <tbody><tr>
-        <th></th>
-        <th>一</th>
-        <th>二</th>
-        <th>三</th>
-        <th>四</th>
-        <th>五</th>
-        <th>六</th>
-        <th>日</th>
-      </tr>
-      <tr id="morning">
-        <th>上午</th>
-        <td class="active">
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td class="active">
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td class="active">
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td class="active">
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td class="active">
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-      </tr>
-      <tr id="afternoon">
-        <th>下午</th>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-      </tr>
-      <tr id="night">
-        <th>晚上</th>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-        <td>
-          <input type="checkbox" name="vehicle" value="Car">
-        </td>
-      </tr>
-      </tbody></table>
-
-  </div>
+<div class="jumbotron jumbotron-carousel">
 </div>
 {% endblock splash %}
-<!-- Benefits of the Django application -->
+
 {% block container %}
+<div class="container">
+  <center><h1>个人信息</h1></center>
+  <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-default">完成</button>
+  </form>
+</div>
+<div style="position: absolute;right: 80px; top: 350px">
+  <table>
+    <tbody><tr>
+      <th></th>
+      <th>一</th>
+      <th>二</th>
+      <th>三</th>
+      <th>四</th>
+      <th>五</th>
+      <th>六</th>
+      <th>日</th>
+    </tr>
+    <tr id="morning">
+      <th>上午</th>
+      <td class="active">
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td class="active">
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td class="active">
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td class="active">
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td class="active">
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+    </tr>
+    <tr id="afternoon">
+      <th>下午</th>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+    </tr>
+    <tr id="night">
+      <th>晚上</th>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+      <td>
+        <input type="checkbox" name="vehicle" value="Car">
+      </td>
+    </tr>
+    </tbody></table>
+
+</div>
+
 {% endblock container %}
 
 {% block scripts %}

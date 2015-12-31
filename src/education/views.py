@@ -10,8 +10,9 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-from actstream import action
-from actstream.models import Action
+#from actstream import action
+#from actstream.models import Action
+from notifications.models import Notification
 
 class TeacherListView(generic.ListView):
     template_name = "teacher_list.html"
@@ -69,7 +70,7 @@ class TeacherDetailView(generic.detail.DetailView):
 class TeacherCreateView(generic.edit.CreateView):
     model = Teacher
     template_name = "teacher_create.html"
-    fields = ['id', 'full_name', 'gender', 'school', 'department', 'picture', 'available', 'verify_picture']
+    fields = ['id', 'full_name', 'gender', 'school', 'department', 'achievement', 'description', 'picture', 'available', 'verify_picture']
 
     def form_valid(self, form):
         form.instance.create_by = self.request.user
@@ -260,7 +261,7 @@ class MyLearningRecordView(generic.ListView):
 
 class MyMessageView(generic.ListView):
     template_name = "my_message.html"
-    model = Action
+    model = Notification
 
     def get_queryset(self):
         queryset = super(MyMessageView, self).get_queryset()
