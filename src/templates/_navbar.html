@@ -21,10 +21,9 @@
         <span class="caret"></span></a>
     <ul class="dropdown-menu nav navbar-nav">
         <li {% if active_link == "student-list" %}class="active"{% endif %}><a href="{% url 'student-list' %}">学生列表</a></li>
-        <li {% if active_link == "student-request" %}class="active"{% endif %}><a href="{% url 'student-request' %}">发布需求</a></li>
+        <li {% if active_link == "student-create" %}class="active"{% endif %}><a href="{% url 'student-create' %}">发布需求</a></li>
     </ul>
 </li>
 <li {% if active_link == "app" %}class="active"{% endif %}><a href="{% url 'app' %}">App中心</a></li>
 <li {% if active_link == "faq" %}class="active"{% endif %}><a href="{% url 'faq' %}">常见问题</a></li>
 <li {% if active_link == "about" %}class="active"{% endif %}><a href="{% url 'about' %}">关于我们</a></li>
-<li {% if active_link == "myspace" %}class="active"{% endif %}><a href="{% url 'myspace' %}">个人空间</a></li>

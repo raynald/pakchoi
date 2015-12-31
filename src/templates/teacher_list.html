@@ -118,9 +118,9 @@
         url = url.split("?")[0];
         url += "?subject=" + values;
         var city = $("#city").val();
-        url += "&city=" + city;
+        if (city != '') url += "&city=" + city;
         var grade = $("#grade").val();
-        url += "&grade=" + grade;
+        if (grade != '') url += "&grade=" + grade;
         window.location.href = url;
     }
 </script>

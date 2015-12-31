@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.views import generic
 from django.shortcuts import render, render_to_response
 from models import Teacher, Subject, Problem, City, Grade, Answer, Student
-from forms import TeacherBookingForm
+from forms import TeacherBookingForm, StudentBookingForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
@@ -80,10 +80,15 @@ class TeacherBookingView(generic.edit.FormView):
     form_class = TeacherBookingForm
     success_url = '/thanks'
 
+class StudentBookingView(generic.edit.FormView):
+    template_name = "student_booking.html"
+    form_class = StudentBookingForm
+    success_url = '/thanks'
+
 
 class StudentListView(generic.ListView):
     template_name = "student_list.html"
-    model = Teacher
+    model = Student
 
     def get_queryset(self):
         city = self.request.GET.get('city')
@@ -133,6 +138,19 @@ class StudentRequestView(generic.edit.CreateView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super(self.__class__, self).dispatch(request, *args, **kwargs)
+
+
+class StudentDetailView(generic.detail.DetailView):
+    queryset = Student.objects.all()
+    model = Student
+    template_name = "student_detail.html"
+    query_pk_and_slug = True
+
+    def get_object(self, *args, **kwargs):
+        queryset = super(StudentDetailView, self).get_queryset()
+        queryset = queryset.filter(id=self.kwargs['pk'])
+        return queryset.first()
+
 
 class ProblemListView(generic.ListView):
     template_name = "problem_list.html"

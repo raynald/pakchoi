@@ -103,6 +103,7 @@ class Rating(models.Model):
 class Student(models.Model):
     full_name = models.CharField(max_length=50)
     subjects = models.ManyToManyField(Subject)
+    grades = models.ManyToManyField(Grade)
     district = models.ForeignKey(District)
     picture = models.ImageField('Student picture',
                                upload_to='student_pics/%Y-%m-%d/',
@@ -112,6 +113,9 @@ class Student(models.Model):
 
     def __unicode__(self):
         return self.full_name
+
+    def get_absolute_url(self):
+        return "/student/%i/" % self.id
 
 
 class Problem(models.Model):

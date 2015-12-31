@@ -79,8 +79,11 @@
 		    </a>
 		    
                   <ul class="dropdown-menu" role="menu">
-                    <li><a href="{% url 'profiles:show_self' %}">Profile</a></li>
-                    <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+                    <li><a href="{% url 'profiles:show_self' %}">个人空间</a></li>
+                    <li><a href="{% url 'myuploaded' %}">我的订单</a></li>
+                    <li><a href="{% url 'myuploaded' %}">我上传的难题</a></li>
+                    <li><a href="{% url 'myanswered' %}">我回答的难题</a></li>
+                    <li><a href="{% url 'accounts:logout' %}">退出登录</a></li>
                   </ul>
                 </li>
               {% endif %}

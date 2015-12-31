@@ -59,44 +59,36 @@
     <label for="subject">{{ subject.title }} </label>
     </span>
 {% endfor %}
-<input type="button" onclick="genFilter();" value="筛选老师" />
+<input type="button" onclick="genFilter();" value="筛选学生" />
 {% if object_list|length == 0 %}
-    <h2>对不起!没有符合您要求的老师.</h2>
+    <h2>对不起!没有符合您要求的学生.</h2>
 {% else %}
     <table>
         <tbody>
-    {% for teacher in object_list %}
+    {% for student in object_list %}
         <tr>
         <td>
             <div>
-            <a href="{% url 'teacher-detail' teacher.id %}">
-                <img class="img-square centered" width="142" height="142" align="left" src="/media/{{ teacher.picture }}">
+            <a href="{% url 'student-detail' student.id %}">
+                <img class="img-square centered" width="142" height="142" align="left" src="/media/{{ student.picture }}">
             </a>
             </div>
             <div style="padding-left: 200px">
                 <h3>
-                    {{ teacher.full_name }} {{ teacher.school }}
+                    {{ student.full_name }} {{ student.school }}
                 </h3>
-                <p>等级: {{ teacher.level }}</p>
                 <p>
                     科目:
-                    {% for sub in teacher.subjects.all %}
+                    {% for sub in student.subjects.all %}
                     <a>{{ sub.title }}</a>
                     {% endfor %}
-                </p>
-                <p>
-                    <strong>战绩: {{teacher.achievement}}</strong>
                 </p>
             </div>
         </td>
         <td>
-            <p style="color: red">课程费用: {{teacher.price}}元/小时</p>
-            <!--<a class="btn btn-primary" href="{% url 'accounts:signup' %}" role="button">联系TA!</a>-->
-        </td>
-        <td>
             <div class="control">
-                <a href="{% url 'teacher-detail' teacher.id %}" target="_blank" alt="detail" title="detail" class="btn btn-control">查看TA</a>
-                <a href="{% url 'teacher-booking' teacher.id %}" class="btn appoint_current">联系TA</a>
+                <a href="{% url 'student-detail' student.id %}" target="_blank" alt="detail" title="detail" class="btn btn-control">查看TA</a>
+                <a href="{% url 'student-booking' student.id %}" class="btn appoint_current">联系TA</a>
             </div>
         </td>
         </tr>
@@ -118,9 +110,9 @@
         url = url.split("?")[0];
         url += "?subject=" + values;
         var city = $("#city").val();
-        url += "&city=" + city;
+        if (city != '') url += "&city=" + city;
         var grade = $("#grade").val();
-        url += "&grade=" + grade;
+        if (grade != '') url += "&grade=" + grade;
         window.location.href = url;
     }
 </script>
