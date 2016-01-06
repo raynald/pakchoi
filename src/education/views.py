@@ -13,6 +13,7 @@ from django.http import HttpResponseRedirect
 #from actstream import action
 #from actstream.models import Action
 from notifications.models import Notification
+from authtools.models import User
 
 class TeacherListView(generic.ListView):
     template_name = "teacher_list.html"
@@ -81,10 +82,22 @@ class TeacherCreateView(generic.edit.CreateView):
         return super(self.__class__, self).dispatch(request, *args, **kwargs)
 
 
-class TeacherBookingView(generic.edit.FormView):
+class TeacherBookingView(generic.edit.CreateView):
     template_name = "teacher_booking.html"
-    form_class = TeacherBookingForm
+    model = Order
+    # form_class = TeacherBookingForm
     success_url = '/thanks'
+    fields = ['subjects', 'date', 'time', 'student_name', 'parent_mobile']
+
+    def form_valid(self, form, *args, **kwargs):
+        teacher = Teacher.objects.get(id = self.request.path_info.split('/')[-2])
+        form.instance.user_teacher = teacher.create_by
+        form.instance.user_student = self.request.user
+        form.instance.teacher_mobile = teacher.mobile
+        form.instance.state = 0
+
+        return super(TeacherBookingView, self).form_valid(form)
+
 
 class StudentBookingView(generic.edit.FormView):
     template_name = "student_booking.html"
@@ -132,10 +145,11 @@ class StudentListView(generic.ListView):
         context['grades'] = Grade.objects.all()
         return context
 
+
 class StudentRequestView(generic.edit.CreateView):
     model = Student
     template_name = "student_request.html"
-    fields = ['id', 'full_name']
+    fields = ['id', 'full_name', 'grades', 'district', 'picture', 'requirement']
 
     def form_valid(self, form):
         form.instance.create_by = self.request.user
@@ -239,12 +253,16 @@ class AnswerDetailView(generic.detail.DetailView):
         queryset = queryset.filter(id=self.kwargs['pk'])
         return queryset.first()
 
+
 class MyOrderListView(generic.ListView):
     template_name = "my_order_list.html"
     model = Order
 
     def get_queryset(self):
+        status = self.request.GET.get('status')
         queryset = super(MyOrderListView, self).get_queryset()
+        if status is not None:
+            queryset = queryset.filter(status=status)
         queryset = queryset.filter(user_teacher=self.request.user)
         return queryset
 

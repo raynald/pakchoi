@@ -25,7 +25,7 @@ urlpatterns = [
     # Student
     url(r'^student/all/$', education.views.StudentListView.as_view(), name='student-list'),
     url(r'^student/create/$', education.views.StudentRequestView.as_view(), name='student-create'),
-    url(r'^student/booking/(?P<pk>\d+)/$', education.views.StudentBookingView.as_view(), name='student-booking'),
+    # url(r'^student/booking/(?P<pk>\d+)/$', education.views.StudentBookingView.as_view(), name='student-booking'),
     url(r'^student/(?P<pk>\d+)/$', education.views.StudentDetailView.as_view(), name='student-detail'),
 
     # Problem

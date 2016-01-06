@@ -77,6 +77,8 @@ class Teacher(models.Model):
     price = models.IntegerField(default=50)
     #TODO: price is related with level
     level = models.ForeignKey(Level, null=True, blank=True)
+    mobile = models.IntegerField(default=1390000000)
+    mobile.verbose_name = '手机号码'
     achievement = models.TextField(max_length=1000, null=True, blank=True)
     achievement.verbose_name = '战绩'
     description = models.TextField(max_length=1000, null=True, blank=True)
@@ -103,16 +105,25 @@ class Rating(models.Model):
     def get_hidden_mobile(self):
         return '%s****%s' % (self.mobile[:3], self.mobile[-4:])
 
+
 class Student(models.Model):
     full_name = models.CharField(max_length=50)
+    full_name.verbose_name = '学生姓名'
     subjects = models.ManyToManyField(Subject)
+    subjects.verbose_name = '课程'
     grades = models.ManyToManyField(Grade)
+    grades.verbose_name = '年级段'
     district = models.ForeignKey(District)
+    district.verbose_name = '所在区域'
     picture = models.ImageField('Student picture',
                                upload_to='student_pics/%Y-%m-%d/',
                                null=True,
                                blank=True)
+    picture.verbose_name = '学生照片'
+    parent_mobile = models.IntegerField(default=1520000000)
+    parent_mobile.verbose_name = '家长手机号'
     requirement = models.TextField(max_length=1000, null=True, blank=True)
+    requirement.verbose_name = '学生要求'
 
     def __unicode__(self):
         return self.full_name
@@ -163,17 +174,17 @@ class Answer(models.Model):
 
 
 INIT = 0
-STUDENT_PAID = 1
-TEACHER_CONFIRMED = 2
-STUDENT_RATED = 3
-FINISH = 4
+# STUDENT_PAID = 1
+TEACHER_CONFIRMED = 1
+STUDENT_RATED = 2
+# FINISH = 4
 
 STATUS_CHOICES = (
     (INIT, "订单生成"),
-    (STUDENT_PAID, '学生已付款'),
+    # 学生付款后才能生成订单 (STUDENT_PAID, '学生已付款'),
     (TEACHER_CONFIRMED, '老师已确认'),
     (STUDENT_RATED, '学生已评价'),
-    (FINISH, '已完成'),
+    # (FINISH, '已完成'),
 )
 
 TIME_CHOICES = (
@@ -186,9 +197,18 @@ class Order(models.Model):
     user_teacher = models.ForeignKey(User, related_name="user_teacher")
     user_student = models.ForeignKey(User, related_name="user_student")
     subjects = models.ManyToManyField(Subject)
+    subjects.verbose_name = '学科'
     date = models.DateField(default=datetime.date.today)
+    date.verbose_name = '日期'
     state =  models.IntegerField(choices=STATUS_CHOICES, default=INIT)
     time = models.IntegerField(choices=TIME_CHOICES, default=3)
+    time.verbose_name = '期望时间段'
+    teacher_name = models.CharField(max_length=20, default="Jason Marz")
+    teacher_name.verbose_name = '老师姓名'
     student_name = models.CharField(max_length=20, default="John Doe")
-    mobile = models.IntegerField(default=1520000000)
+    student_name.verbose_name = '学生姓名'
+    teacher_mobile = models.IntegerField(default=1390000000)
+    teacher_mobile.verbose_name = '老师手机号'
+    parent_mobile = models.IntegerField(default=1520000000)
+    parent_mobile.verbose_name = '家长手机号'
 
