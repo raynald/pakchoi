@@ -23,9 +23,9 @@
 <div class="jumbotron jumbotron-carousel">
   <br/>
   <a class="btn" href="?">所有订单</a>
-  <a class="btn" href="?status=0">新订单</a>
-  <a class="btn" href="?status=1">未结订单</a>
-  <a class="btn" href="?status=2">已结订单</a>
+  <a class="btn" href="?state=0">新订单</a>
+  <a class="btn" href="?state=1">未结订单</a>
+  <a class="btn" href="?state=2">已结订单</a>
 </div>
 {% endblock splash %}
 
@@ -51,8 +51,10 @@
     </td>
       <td>
         <div class="control">
-          <!--<a href="{% url 'order-detail' order.id %}" target="_blank" alt="detail" title="detail" class="btn btn-control">查看详情</a>-->
-          <!--<a href="{% url 'answer-create' %}" class="btn appoint_current">我会解!</a>-->
+            <a href="{% url 'order-detail' order.id %}" target="_blank" alt="detail" title="detail" class="btn btn-control">查看订单详情</a>
+            {% if order.state = 0 %}
+              <a href="" class="btn appoint_current">我要确认</a>
+            {% endif %}
         </div>
       </td>
 

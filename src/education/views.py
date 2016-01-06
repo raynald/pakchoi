@@ -85,7 +85,6 @@ class TeacherCreateView(generic.edit.CreateView):
 class TeacherBookingView(generic.edit.CreateView):
     template_name = "teacher_booking.html"
     model = Order
-    # form_class = TeacherBookingForm
     success_url = '/thanks'
     fields = ['subjects', 'date', 'time', 'student_name', 'parent_mobile']
 
@@ -93,16 +92,28 @@ class TeacherBookingView(generic.edit.CreateView):
         teacher = Teacher.objects.get(id = self.request.path_info.split('/')[-2])
         form.instance.user_teacher = teacher.create_by
         form.instance.user_student = self.request.user
+        form.instance.teacher_name = teacher.full_name
         form.instance.teacher_mobile = teacher.mobile
         form.instance.state = 0
 
         return super(TeacherBookingView, self).form_valid(form)
 
 
-class StudentBookingView(generic.edit.FormView):
+class StudentBookingView(generic.edit.CreateView):
     template_name = "student_booking.html"
-    form_class = StudentBookingForm
+    model = Order
     success_url = '/thanks'
+    fields = ['subjects', 'date', 'time', 'teacher_mobile']
+
+    def form_valid(self, form, *args, **kwargs):
+        student = Student.objects.get(id = self.request.path_info.split('/')[-2])
+        form.instance.user_student = student.create_by
+        form.instance.user_teacher = self.request.user
+        form.instance.student_name = student.full_name
+        form.instance.parent_mobile = student.parent_mobile
+        form.instance.state = 0
+
+        return super(StudentBookingView, self).form_valid(form)
 
 
 class StudentListView(generic.ListView):
@@ -208,6 +219,18 @@ class ProblemDetailView(generic.detail.DetailView):
         return queryset.first()
 
 
+class OrderDetailView(generic.detail.DetailView):
+    queryset = Order.objects.all()
+    model = Order
+    template_name = "order_detail.html"
+    query_pk_and_slug = True
+
+    def get_object(self, *args, **kwargs):
+        queryset = super(OrderDetailView, self).get_queryset()
+        queryset = queryset.filter(id=self.kwargs['pk'])
+        return queryset.first()
+
+
 class UploadedProblemListView(generic.ListView):
     template_name = "uploaded_problem_list.html"
     model = Problem
@@ -259,10 +282,11 @@ class MyOrderListView(generic.ListView):
     model = Order
 
     def get_queryset(self):
-        status = self.request.GET.get('status')
+        state = self.request.GET.get('state')
         queryset = super(MyOrderListView, self).get_queryset()
-        if status is not None:
-            queryset = queryset.filter(status=status)
+        print 'state', state
+        if state is not None:
+            queryset = queryset.filter(state=state)
         queryset = queryset.filter(user_teacher=self.request.user)
         return queryset
 

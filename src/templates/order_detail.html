@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}订单详情{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="problem-list" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block splash %}
+<div class="jumbotron jumbotron-carousel">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-8" style="text-align:center">
+        <!--<center>-->
+          <!--</center>-->
+      </div>
+      <div class="col-md-4 col-sm-4">
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock splash %}
+
+{% block container %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>老师:{{ object.teacher_name }}</h2>
+      <h2>学生:{{ object.student_name }}</h2>
+      <p>补习日期: {{ object.date }}</p>
+      <p>补习时间段: {{ object.time }}</p>
+      <p>补习科目:
+      {% for subject in object.subjects.all %}
+        <a>{{ subject.title }}</a>
+      {% endfor %}</p>
+      <p>老师联系电话: {{ object.teacher_mobile }}</p>
+      <p>家长联系电话: {{ object.parent_mobile }}</p>
+      <p>订单状态: {{ object.state }}</p>
+    </div>
+  </div>
+</div>
+
+<center>
+<a class="btn btn-primary" style="width:400px;" href="{% url 'accounts:signup' %}" role="button">我要解答</a>
+</center>
+
+{% endblock container %}
+
+{% block scripts %}
+{{block.super}}
+{% endblock scripts %}
+

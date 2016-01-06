@@ -25,13 +25,16 @@ urlpatterns = [
     # Student
     url(r'^student/all/$', education.views.StudentListView.as_view(), name='student-list'),
     url(r'^student/create/$', education.views.StudentRequestView.as_view(), name='student-create'),
-    # url(r'^student/booking/(?P<pk>\d+)/$', education.views.StudentBookingView.as_view(), name='student-booking'),
+    url(r'^student/booking/(?P<pk>\d+)/$', education.views.StudentBookingView.as_view(), name='student-booking'),
     url(r'^student/(?P<pk>\d+)/$', education.views.StudentDetailView.as_view(), name='student-detail'),
 
     # Problem
     url(r'problem/all/$', education.views.ProblemListView.as_view(), name='problem-list'),
     url(r'problem/upload$', education.views.ProblemUploadView.as_view(), name='problem-upload'),
     url(r'^problem/(?P<pk>\d+)/$', education.views.ProblemDetailView.as_view(), name='problem-detail'),
+
+    # Order
+    url(r'^order/(?P<pk>\d+)/$', education.views.OrderDetailView.as_view(), name='order-detail'),
 
     url(r'app/$', views.AppPage.as_view(), name='app'),
     url(r'myspace/message$', education.views.MyMessageView.as_view(), name='mymessage'),

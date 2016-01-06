@@ -124,6 +124,8 @@ class Student(models.Model):
     parent_mobile.verbose_name = '家长手机号'
     requirement = models.TextField(max_length=1000, null=True, blank=True)
     requirement.verbose_name = '学生要求'
+    create_by = models.ForeignKey(User)
+    create_by.verbose_name = '创建者'
 
     def __unicode__(self):
         return self.full_name
@@ -212,3 +214,5 @@ class Order(models.Model):
     parent_mobile = models.IntegerField(default=1520000000)
     parent_mobile.verbose_name = '家长手机号'
 
+    def __unicode__(self):
+        return self.teacher_name + self.student_name

@@ -45,8 +45,10 @@
     </td>
       <td>
         <div class="control">
-          <!--<a href="{% url 'order-detail' order.id %}" target="_blank" alt="detail" title="detail" class="btn btn-control">查看详情</a>-->
-          <!--<a href="{% url 'answer-create' %}" class="btn appoint_current">我会解!</a>-->
+          <a href="{% url 'order-detail' order.id %}" target="_blank" alt="detail" title="detail" class="btn btn-control">查看订单详情</a>
+          {% if order.state = 1 %}
+          <a href="" class="btn appoint_current">我要评价</a>
+          {% endif %}
         </div>
       </td>
 

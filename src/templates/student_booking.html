@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}订单页{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="teacher-list" %}
+{% endblock %}
+
+{% block style %}
+{{ block.super }}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+{% endblock style %}
+
+{% block splash %}
+<div class="jumbotron jumbotron-carousel">
+  <div class="container">
+    <center><h1>家教预约单</h1></center>
+  </div>
+</div>
+{% endblock splash %}
+{% block container %}
+<form action="" method="post">{% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-default">确认</button>
+</form>
+{% endblock container %}
+
+{% block scripts %}
+{{ block.super }}
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2012",
+      // You can put more options here.
+
+    });
+  });
+  </script>
+{% endblock scripts %}
