@@ -19,7 +19,7 @@ DATABASES = {
 }
 
 # Must mention ALLOWED_HOSTS in production!
-ALLOWED_HOSTS = ["raynald.webfactional.com"]
+ALLOWED_HOSTS = [".webfactional.com"]
 
 # Cache the templates in memory for speed-up
 loaders = [

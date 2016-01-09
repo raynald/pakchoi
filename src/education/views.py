@@ -311,3 +311,4 @@ class MyMessageView(generic.ListView):
         queryset = super(MyMessageView, self).get_queryset()
         queryset = queryset.filter(recipient=self.request.user)
         return queryset
+

@@ -114,24 +114,16 @@
         </div>
     </div>
   <div class="row">
-      <h1>媒体资讯</h1>
-    <div class="col-lg-4">
-      <h2>【36氪】“状元到家”荣膺NEXT年度最佳家教O2O产品</h2>
-      <p>
-          状元到家荣膺NEXT年度最佳家教O2O产品，同时上榜的还有“请他教”“跟谁学”“疯狂老师”等家教产品。
-      </p>
-      <p><a class="btn btn-primary" href="#" role="button">完整内容 &raquo;</a></p>
-    </div>
-    <div class="col-lg-4">
-      <h2>【36氪】“状元到家”在“红海”的家教O2O市场杀出一条道路</h2>
-        <p>家教 O2O 市场的火热有目共睹 —— 疯狂补贴，巨额融资，传统机构纷纷卷入，融到 B 轮之后的公司纷纷在强调一点就是“赛道关闭”。从大的角度上来看，想在这块市场上再找到一块未被耕耘的处女地几乎已经不太可能了，后续的进入者必须另寻他路。</p>
-      <p><a class="btn btn-primary" href="#" role="button">完整内容 &raquo;</a></p>
-    </div>
-    <div class="col-lg-4">
-      <h2>【东方财经】边际CEO周兴天深刻解读在线教育市场（视频）</h2>
-      <p>家教 O2O 市场的火热有目共睹 —— 疯狂补贴，巨额融资，传统机构纷纷卷入，融到 B 轮之后的公司纷纷在强调一点就是“赛道关闭”。从大的角度上来看，想在这块市场上再找到一块未被耕耘的处女地几乎已经不太可能了，后续的进入者必须另寻他路。</p>
-      <p><a class="btn btn-primary" href="#" role="button">完整内容 &raquo;</a></p>
-    </div>
+      <h1>学习秘籍</h1>
+      {% for article in articles %}
+        <div class="col-lg-4">
+         <h2> {{ article.title }} <h2>
+          <p>
+              {{ article.content|slice:":100" }}
+          </p>
+          <p><a class="btn btn-primary" href="{% url 'zinnia:entry_shortlink' article.pk %}" role="button">完整内容 &raquo;</a></p>
+        </div>
+      {% endfor %}
   </div>
 </div>
 

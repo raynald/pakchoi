@@ -1,5 +1,6 @@
 from django.contrib import admin
-from models import Order, Subject, Teacher, Student, City, District, Level, Rating, Grade, Problem, Answer
+from models import Order, Subject, Teacher, Student, City, District, Level, Rating, Grade,\
+    Problem, Answer
 
 class SubjectAdmin(admin.ModelAdmin):
     pass
@@ -33,6 +34,7 @@ class AnswerAdmin(admin.ModelAdmin):
 
 class OrderAdmin(admin.ModelAdmin):
     pass
+
 
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Teacher, TeacherAdmin)

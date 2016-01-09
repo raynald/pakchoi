@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}题目详情{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="problem-list" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block splash %}
+<div class="jumbotron jumbotron-carousel">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-8" style="text-align:center">
+        <h3>{{ object.title }}</h3>
+      </div>
+      <div class="col-md-4 col-sm-4">
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock splash %}
+
+{% block container %}
+<div class="container">
+    <div class="body">
+      {{ object.description }}
+    </div>
+      <h1>上传者:</h1>
+      {{ object.created_by }}
+  </div>
+</div>
+
+<center>
+<a class="btn btn-primary" style="width:400px;" href="{% url 'accounts:signup' %}" role="button">我要评论</a>
+</center>
+
+{% endblock container %}
+
+{% block scripts %}
+{{block.super}}
+{% endblock scripts %}
+

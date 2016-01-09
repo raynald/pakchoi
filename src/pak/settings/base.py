@@ -22,7 +22,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             join(BASE_DIR, 'templates'),
-            # insert more TEMPLATE_DIRS here
+            join(BASE_DIR, 'article/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -74,6 +74,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_comments',
     'authtools',
     'crispy_forms',
     'easy_thumbnails',
@@ -81,6 +82,8 @@ INSTALLED_APPS = (
     'accounts',
     'education',
     'notifications',
+    'zinnia',
+    'tagging',
 )
 
 MIDDLEWARE_CLASSES = (

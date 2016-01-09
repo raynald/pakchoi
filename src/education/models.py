@@ -216,3 +216,5 @@ class Order(models.Model):
 
     def __unicode__(self):
         return self.teacher_name + self.student_name
+
+
