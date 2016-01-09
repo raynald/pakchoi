@@ -10,9 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-#from actstream import action
-#from actstream.models import Action
 from notifications.models import Notification
+from notifications.signals import notify
 from authtools.models import User
 
 class TeacherListView(generic.ListView):
@@ -75,6 +74,7 @@ class TeacherCreateView(generic.edit.CreateView):
 
     def form_valid(self, form):
         form.instance.create_by = self.request.user
+        notify.send(self.request.user, recipient=self.request.user, verb='您创建了一个老师')
         return super(TeacherCreateView, self).form_valid(form)
 
     @method_decorator(login_required)
@@ -95,7 +95,7 @@ class TeacherBookingView(generic.edit.CreateView):
         form.instance.teacher_name = teacher.full_name
         form.instance.teacher_mobile = teacher.mobile
         form.instance.state = 0
-
+        notify.send(self.request.user, recipient=teacher.create_by, verb='我向你发送了一个家教需求')
         return super(TeacherBookingView, self).form_valid(form)
 
 
@@ -112,6 +112,7 @@ class StudentBookingView(generic.edit.CreateView):
         form.instance.student_name = student.full_name
         form.instance.parent_mobile = student.parent_mobile
         form.instance.state = 0
+        notify.send(self.request.user, recipent=student.create_by, verb='我可以当你的老师,先付款哦')
 
         return super(StudentBookingView, self).form_valid(form)
 
@@ -164,6 +165,7 @@ class StudentRequestView(generic.edit.CreateView):
 
     def form_valid(self, form):
         form.instance.create_by = self.request.user
+        notify.send(self.request.user, recipient=self.request.user, verb='您创建了一个家教需求')
         return super(StudentRequestView, self).form_valid(form)
 
     @method_decorator(login_required)
@@ -307,5 +309,5 @@ class MyMessageView(generic.ListView):
 
     def get_queryset(self):
         queryset = super(MyMessageView, self).get_queryset()
-        queryset = queryset.filter(actor_object_id=self.request.user.id)
+        queryset = queryset.filter(recipient=self.request.user)
         return queryset
