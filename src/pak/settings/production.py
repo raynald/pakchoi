@@ -9,7 +9,7 @@ TEMPLATE_DEBUG = False
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pakchoi_db',
         'USER': 'pakchoi',
         'PASSWORD': '123456',
