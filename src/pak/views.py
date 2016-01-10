@@ -1,5 +1,6 @@
 from django.views import generic
 from zinnia.models import Entry
+from education.models import Teacher
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -8,7 +9,8 @@ class HomePage(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePage, self).get_context_data(**kwargs)
-        context['articles'] = Entry.objects.all().order_by('-id')[:3]
+        context['teachers'] = Teacher.objects.all().order_by('?')[:3]
+        context['articles'] = Entry.objects.all().order_by('?')[:3]
         return context
 
 class AppPage(generic.TemplateView):

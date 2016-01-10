@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 import profiles.urls
 import accounts.urls
+import haystack.urls
 import zinnia.urls
 from . import views
 import education.urls
@@ -20,10 +21,10 @@ urlpatterns = [
 
     url(r'^zinnia/', include(zinnia.urls, namespace='zinnia')),
     url(r'^comments/', include('django_comments.urls')),
-    url(r'^/', include(education.urls)),
+    url(r'^', include(education.urls)),
+    url(r'^search/', include(haystack.urls)),
 
     url('^inbox/notifications/', include(notifications.urls)), #, namespace='notifications')),
-
 
     url(r'error/$', views.ErrorPage.as_view(), name='error-page')
 ]

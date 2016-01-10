@@ -13,3 +13,5 @@ django-xmlrpc==0.1.5
 mots-vides==2015.5.11
 pillow==2.9.0
 pyparsing==2.0.3
+pysolr==3.3.3
+Whoosh==2.7.0

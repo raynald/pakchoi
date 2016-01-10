@@ -5,6 +5,7 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from authtools.models import User
 import datetime
+from haystack import indexes
 
 GENDER_CHOICES = (
     ('M', '男'),
@@ -91,6 +92,22 @@ class Teacher(models.Model):
 
     def __unicode__(self):
         return self.full_name
+
+
+class TeacherIndex(indexes.SearchIndex, indexes.Indexable):
+    name = indexes.CharField()
+    school = indexes.CharField()
+    subject = indexes.CharField(document=True, model_attr='Subject')
+    grade = indexes.CharField(model_attr='Grade')
+    district = indexes.CharField(model_attr='Distrct')
+    pub_date = indexes.DateTimeField(model_attr='pub_date')
+
+    def get_model(self):
+        return Teacher
+
+    def index_queryset(self, using=None):
+        """Used when the entire index for model is updated."""
+        return self.get_model().objects.filter(pub_date__lte=datetime.datetime.now())
 
 
 class Rating(models.Model):

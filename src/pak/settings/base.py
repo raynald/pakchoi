@@ -74,6 +74,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'haystack',
     'django_comments',
     'authtools',
     'crispy_forms',
@@ -145,3 +146,36 @@ LOGIN_REDIRECT_URL = reverse_lazy("profiles:show_self")
 LOGIN_URL = reverse_lazy("accounts:login")
 
 THUMBNAIL_EXTENSION = 'png'     # Or any extn for your thumbnails
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://localhost:8000/solr/default',
+        'TIMEOUT': 60 * 5,
+        'INCLUDE_SPELLING': True,
+        'BATCH_SIZE': 100,
+        'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+    },
+    # 'autocomplete': {
+    #     'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+    #     'PATH': '/home/search/whoosh_index',
+    #     'STORAGE': 'file',
+    #     'POST_LIMIT': 128 * 1024 * 1024,
+    #     'INCLUDE_SPELLING': True,
+    #     'BATCH_SIZE': 100,
+    #     'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+    # },
+    # 'slave': {
+    #     'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+    #     'PATH': '/home/search/whoosh_index',
+    #     # 'ENGINE': 'xapian_backend.XapianEngine',
+    #     # 'PATH': '/home/search/xapian_index',
+    #     'INCLUDE_SPELLING': True,
+    #     'BATCH_SIZE': 100,
+    #     'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+    # },
+    # 'db': {
+    #     'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    #     'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+    # }
+}

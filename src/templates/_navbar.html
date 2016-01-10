@@ -24,6 +24,7 @@
         <li {% if active_link == "student-create" %}class="active"{% endif %}><a href="{% url 'student-create' %}">发布需求</a></li>
     </ul>
 </li>
+<li {% if active_link == "article" %}class="active"{% endif %}><a href="{% url 'zinnia:entry_archive_index' %}">秘籍心得</a></li>
 <li {% if active_link == "app" %}class="active"{% endif %}><a href="{% url 'app' %}">App中心</a></li>
 <li {% if active_link == "faq" %}class="active"{% endif %}><a href="{% url 'faq' %}">常见问题</a></li>
 <li {% if active_link == "about" %}class="active"{% endif %}><a href="{% url 'about' %}">关于我们</a></li>

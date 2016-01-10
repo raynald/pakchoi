@@ -70,12 +70,12 @@
         <td>
             <div>
             <a href="{% url 'student-detail' student.id %}">
-                <img class="img-square centered" width="142" height="142" align="left" src="/media/{{ student.picture }}">
+                <!--<img class="img-square centered" width="142" height="142" align="left" src="/media/{{ student.picture }}">-->
             </a>
             </div>
             <div style="padding-left: 200px">
                 <h3>
-                    {{ student.full_name }} {{ student.school }}
+                    {{ student.full_name|slice:":1" }}同学 {{ student.school }}
                 </h3>
                 <p>
                     科目:

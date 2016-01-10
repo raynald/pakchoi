@@ -86,41 +86,54 @@
                         <div>
                             <p align="left">我是学生,找找有没有合适的老师:</p>
                             <form id="search_teacher_form" action="{% url 'teacher-list' %}" method="get" accept-charset="utf-8">
-                                <input type="text" class="form-control" name="word" id="search1" placeholder="输入你需要补习的科目（如: 数学, 物理）" style="width: 300px">
-                                <button class="btn-danger" type="submit" onclick="up()">搜 索</button>
+                                <input type="text" class="form-control" name="q" id="search1" placeholder="输入你想要补习的地区,科目,年级段等（如: 初中物理 嘉定）" style="width: 900px">
+                                <center><button class="btn-danger" type="submit" onclick="up()">搜 索</button></center>
                             </form>
                             <p/>
                         </div>
                         <div>
-                            我想让人帮忙解道题:
+                            <strong>我想让人帮忙解道题:</strong>
                             <a class="btn btn-primary" href="{% url 'problem-upload' %}" role="button">上传难题</a>
                         </div>
                     </td>
-                    <td style="padding:0 225px 0 15px;">
-                        <div>
-                            <p>我是老师,想要寻找学生:</p>
-                            <form>
-                                <input type="text" class="form-control" name="search_student" id="search2" placeholder="输入你擅长的科目（如: 初中数学, 物理）" style="width: 300px">
-                                <button class="btn-danger" type="submit">搜 索</button>
-                            </form>
-                        </div>
-                        <div>
-                            我想让人帮忙解道题:
-                            <a class="btn btn-primary" href="{% url 'problem-upload' %}" role="button">上传难题</a>
-                        </div>
-                    </td>
+                    <!--<td style="padding:0 225px 0 15px;">-->
+                        <!--<div>-->
+                            <!--<p>我是老师,想要寻找学生:</p>-->
+                            <!--<form>-->
+                                <!--<input type="text" class="form-control" name="search_student" id="search2" placeholder="输入你擅长的科目（如: 初中数学, 物理）" style="width: 300px">-->
+                                <!--<button class="btn-danger" type="submit">搜 索</button>-->
+                            <!--</form>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--我想让人帮忙解道题:-->
+                            <!--<a class="btn btn-primary" href="{% url 'problem-upload' %}" role="button">上传难题</a>-->
+                        <!--</div>-->
+                    <!--</td>-->
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="row">
+        <h1>代表老师</h1>
+        {% for teacher in teachers %}
+        <div class="col-lg-4">
+            <h2> {{ teacher.full_name }} <h2>
+                <img class="img-square centered" width="142" height="142" align="left" src="/media/{{ teacher.picture }}">
+                <p>
+                    {{ teacher.achievement }}
+                </p>
+                <p><a class="btn btn-primary" href="{% url 'teacher-detail' teacher.pk %}" role="button">完整内容 &raquo;</a></p>
+        </div>
+        {% endfor %}
     </div>
   <div class="row">
       <h1>学习秘籍</h1>
       {% for article in articles %}
         <div class="col-lg-4">
          <h2> {{ article.title }} <h2>
-          <p>
+          <h4>
               {{ article.content|slice:":100" }}
-          </p>
+          </h4>
           <p><a class="btn btn-primary" href="{% url 'zinnia:entry_shortlink' article.pk %}" role="button">完整内容 &raquo;</a></p>
         </div>
       {% endfor %}
