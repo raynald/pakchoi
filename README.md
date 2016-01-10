@@ -32,6 +32,6 @@ Run migrations:
 
 [Aliyun][2] address: 112.74.88.216
 
--[0]: https://www.python.org/
--[1]: https://www.djangoproject.com/
--[2]: https://www.aliyun.com/
+[0]: https://www.python.org/
+[1]: https://www.djangoproject.com/
+[2]: https://www.aliyun.com/
