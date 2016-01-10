@@ -149,13 +149,20 @@ THUMBNAIL_EXTENSION = 'png'     # Or any extn for your thumbnails
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://localhost:8000/solr/default',
-        'TIMEOUT': 60 * 5,
-        'INCLUDE_SPELLING': True,
-        'BATCH_SIZE': 100,
-        'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+            'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+            'PATH': '/home/search/whoosh_index',
+            'INCLUDE_SPELLING': True,
+            'BATCH_SIZE': 100,
+            'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
     },
+    # 'default': {
+    #     'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+    #     'URL': 'http://localhost:8000/solr/default',
+    #     'TIMEOUT': 60 * 5,
+    #     'INCLUDE_SPELLING': True,
+    #     'BATCH_SIZE': 100,
+    #     'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+    # },
     # 'autocomplete': {
     #     'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
     #     'PATH': '/home/search/whoosh_index',

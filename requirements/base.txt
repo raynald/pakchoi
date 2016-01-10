@@ -15,3 +15,4 @@ pillow==2.9.0
 pyparsing==2.0.3
 pysolr==3.3.3
 Whoosh==2.7.0
+pytz

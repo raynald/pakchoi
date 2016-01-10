@@ -1,14 +1,14 @@
 
 
-# pak
+# pakchoi
 
-pak is a _short description_. It is built with [Python][0] using the [Django Web Framework][1].
+pakchoi is an online education booking system. It is built with [Python][0] using the [Django Web Framework][1].
 
 This project has the following basic apps:
 
-* App1 (short desc)
-* App2 (short desc)
-* App3 (short desc)
+* education
+* zinnia
+* haystack
 
 ## Installation
 
@@ -30,7 +30,8 @@ Run migrations:
 
 ### Detailed instructions
 
-Take a look at the docs for more information.
+[Aliyun][2] address: 112.74.88.216
 
-[0]: https://www.python.org/
-[1]: https://www.djangoproject.com/
+-[0]: https://www.python.org/
+-[1]: https://www.djangoproject.com/
+-[2]: https://www.aliyun.com/
